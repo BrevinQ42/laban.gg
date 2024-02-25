@@ -13,7 +13,7 @@ def register_view(request):
     if request.method == 'POST':
         form = AccountForm(request.POST)
         if form.is_valid():
-            new_account = form.save()
+            form.save()
     else:
         form = AccountForm()
     return render(request, 'register/register.html', {'form': form})
