@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Tournament</title>
+    <style>
+        body {
+            background-color: #4D24AC; 
+        }
+        .black-box {
+            background-color: black;
+            border-radius: 30px;
+            padding: 20px;
+            color: white;
+            margin: auto;
+            width: 60%;
+            margin-top: 50px;
+            overflow: auto; 
+        }
+        .purple-box {
+            background-color: #9400D3; 
+            padding: 10px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .pink-button {
+            background-color: #F6247B;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            float: right;
+        }
+        .form-column {
+            width: 45%;
+            float: left;
+            padding-right: 5%;
+        }
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 35px;
+        }
+        .upload-container {
+            display: flex;
+            align-items: center;
+        }
+        .upload-box {
+            background-color: #B3B3B3;
+            padding: 5px 100px; 
+            border-radius: 10px;
+            margin-right: 10px; 
+        }
+        .upload-text {
+            color: white;
+            font-size: 30px;
+        }
+        .upload-button {
+            background-color: #B3B3B3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="black-box">
+        <div class="header-row">
+            <h2>Create Tournament</h2>
+            <div class="upload-container">
+                <div class="upload-box">
+                    <div class="upload-text">Upload Image Here:</div>
+                    <input type="file" accept="image/*" class="upload-button">
+                </div>
+            </div>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-column">
+                <div class="purple-box">
+                    <label for="name">Name</label><br>
+                    <input type="text" name="name" id="name" class="purple-box">
+                </div>
+                <div class="purple-box">
+                    <label for="game">Game</label><br>
+                    <input type="text" name="game" id="game" class="purple-box">
+                </div>
+                <div class="purple-box">
+                    <label for="tier">Tier</label><br>
+                    <select name="tier" id="tier" class="purple-box">
+                        <option value="S">S</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+                <div class="purple-box">
+                    <label for="location">Location</label><br>
+                    <input type="text" name="location" id="location" class="purple-box">
+                </div>
+                <div class="purple-box">
+                    <label for="format">Format</label><br>
+                    <select name="format" id="format" class="purple-box">
+                        <option value="single_elimination">Single Elimination</option>
+                        <option value="double_elimination">Double Elimination</option>
+                    </select>
+                </div>
+                <div class="purple-box">
+                    <label for="application_link">Application Form Link</label><br>
+                    <input type="text" name="application_link" id="application_link" class="purple-box">
+                </div>
+            </div>
+            <div class="form-column">
+                <div class="purple-box">
+                    <label for="schedule">Schedule</label><br>
+                    <textarea name="schedule" id="schedule" rows="6" class="purple-box"></textarea> 
+                </div>
+                <div class="purple-box">
+                    <label for="prize_pool">Prize Pool</label><br>
+                    <textarea name="prize_pool" id="prize_pool" rows="6" class="purple-box"></textarea>
+                </div>
+                <div class="purple-box">
+                    <label for="more_details">More Details</label><br>
+                    <textarea name="more_details" id="more_details" rows="6" class="purple-box"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="pink-button">Publish Tournament</button>
+        </form>
+    </div>
+</body>
+</html>
