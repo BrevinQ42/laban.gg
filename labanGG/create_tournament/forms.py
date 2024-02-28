@@ -4,4 +4,4 @@ from .models import Tournament
 class TournamentForm(forms.ModelForm):
     class Meta:
         model = Tournament
-        fields = ['name', 'location', 'schedule', 'more_details', 'game', 'tier', 'prize_pool']
+        fields = ['name', 'game', 'tier', 'location', 'format', 'application_link', 'schedule', 'prize_pool', 'more_details', 'image']

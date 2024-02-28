@@ -52,13 +52,12 @@
         }
         .upload-box {
             background-color: #B3B3B3;
-            padding: 5px 100px; 
+            padding: 5px 10px; 
             border-radius: 10px;
             margin-right: 10px; 
         }
         .upload-text {
             color: white;
-            font-size: 30px;
         }
         .upload-button {
             background-color: #B3B3B3;
@@ -72,16 +71,21 @@
 </head>
 <body>
     <div class="black-box">
+        <!-- New code for the header row with image upload -->
         <div class="header-row">
             <h2>Create Tournament</h2>
             <div class="upload-container">
                 <div class="upload-box">
                     <div class="upload-text">Upload Image Here:</div>
-                    <input type="file" accept="image/*" class="upload-button">
+                    <!-- File input field for image upload -->
+                    <input type="file" accept="image/*" name="image" class="upload-button">
                 </div>
             </div>
         </div>
-        <form method="post">
+        <!-- End of new code for the header row -->
+
+        <!-- Form for creating a new tournament -->
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-column">
                 <div class="purple-box">
@@ -133,6 +137,8 @@
             </div>
             <button type="submit" class="pink-button">Publish Tournament</button>
         </form>
+        <!-- End of form -->
+
     </div>
 </body>
 </html>
