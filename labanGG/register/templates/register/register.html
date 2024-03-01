@@ -67,6 +67,31 @@
             border-radius: 10px;
             cursor: pointer;
         }
+
+
+        /* Styling for the option buttons */
+        .option-button {
+            cursor: pointer;
+            padding: 5px 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Styling for the active option button */
+        .option-button.active {
+            background-color: #ddd;
+        }
+
+          /* Styling for the forms */
+        .form-container {
+            display: none; /* Hide forms by default */
+        }
+
+        /* Styling for the active form */
+        .form-container.active {
+            display: block; /* Show active form */
+        }
     </style>
 </head>
 
@@ -74,9 +99,11 @@
     <div class="black-box">
         <div class="header-row">
             <h2>Register Account</h2>
+            <div class="option-button active" onclick="showForm('form1')">Tournament Attendee</div>
+            <div class="option-button" onclick="showForm('form2')">Tournament Organizer</div>
         </div>
 
-        <form method="post" enctype="multipart/form-data">
+        <form id="form1" class="form-container active" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-column">
                 <div class="purple-box">
@@ -92,6 +119,21 @@
                     <input type="text" name="password" id="password" class="purple-box">
                 </div>
             </div>
+            <div class="form-column">
+                <div class="purple-box">
+                    <label for="confirm_email">Confirm Email</label><br>
+                    <input type="text" name="confirm_email" id="confirm_email" class="purple-box">
+                </div>
+                <div class="purple-box">
+                    <label for="confirm_password">Confirm Password</label><br>
+                    <input type="text" name="confirm_password" id="confirm_password" class="purple-box">
+                </div>
+            </div>
+            <button type="submit" class="pink-button">Register</button>
+        </form>
+
+        <form id="form2" class="form-container" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="form-column">
                 <div class="purple-box">
                     <label for="confirm_email">Confirm Email</label><br>
@@ -121,5 +163,29 @@
             {% endblock %}
         </div>
     </div>
+
+    <script>
+        function showForm(formId) {
+          // Hide all form containers
+          var formContainers = document.getElementsByClassName("form-container");
+          for (var i = 0; i < formContainers.length; i++) {
+            formContainers[i].classList.remove("active");
+          }
+          
+          // Show the selected form container
+          var selectedForm = document.getElementById(formId);
+          selectedForm.classList.add("active");
+        
+          // Update the active state of option buttons
+          var optionButtons = document.getElementsByClassName("option-button");
+          for (var i = 0; i < optionButtons.length; i++) {
+            optionButtons[i].classList.remove("active");
+            if (optionButtons[i].getAttribute("onclick").includes(formId)) {
+              optionButtons[i].classList.add("active");
+            }
+          }
+        }
+        </script>
+
 </body>
 </html>
