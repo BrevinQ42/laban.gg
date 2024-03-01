@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Account
+from .models import Account, OrganizerAccount
 
 class AccountForm(forms.ModelForm):
     confirm_email = forms.EmailField(max_length=100)
@@ -23,6 +23,13 @@ class AccountForm(forms.ModelForm):
             self.add_error('confirm_password', "Password does not match")
 
         return cleaned_data
+    
+class OrganizerAccountForm(forms.ModelForm):
+    confirm_email = forms.EmailField(max_length=100)
+    confirm_password = forms.CharField(max_length=32)
+    class Meta:
+        model = OrganizerAccount
+        fields = ['username', 'email', 'password', 'first_name', 'last_name', 'contact_number', 'additional_comments']
 
 
     
