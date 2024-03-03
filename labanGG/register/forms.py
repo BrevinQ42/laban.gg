@@ -31,6 +31,21 @@ class OrganizerAccountForm(forms.ModelForm):
         model = OrganizerAccount
         fields = ['username', 'email', 'password', 'first_name', 'last_name', 'contact_number', 'additional_comments']
 
+        def clean(self):
+            cleaned_data = super(AccountForm, self).clean()
+            email = cleaned_data.get("email")
+            confirm_email = cleaned_data.get("confirm_email")
+            password = cleaned_data.get("password")
+            confirm_password = cleaned_data.get("confirm_password")
+
+            if email != confirm_email:
+                self.add_error('confirm_email', "Email does not match")
+
+            if password != confirm_password:
+                self.add_error('confirm_password', "Password does not match")
+
+            return cleaned_data
+
 
     
         

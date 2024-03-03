@@ -16,9 +16,15 @@ class Account(models.Model):
     password = models.CharField(max_length=32)
     isOrganizer = models.BooleanField(default=False)
 
+    def __str__(self) -> str:
+        return self.email
+
 class OrganizerAccount(Account):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=32)
     contact_number = models.CharField(max_length=15, validators=[validate_contact_number])
     past_experience = models.TextField()
     additional_comments = models.TextField()
+
+    def __str__(self) -> str:
+        return self.email
