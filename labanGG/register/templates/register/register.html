@@ -108,60 +108,107 @@
             <div class="form-column">
                 <div class="purple-box">
                     <label for="username">Username</label><br>
-                    <input type="text" name="username" id="username" class="purple-box">
+                    <input type="text" name="username" id="username" class="purple-box" required="True">
                 </div>
                 <div class="purple-box">
                     <label for="email">Email</label><br>
-                    <input type="text" name="email" id="email" class="purple-box">
+                    <input type="text" name="email" id="email" class="purple-box" required="True">
                 </div>
                 <div class="purple-box">
                     <label for="password">Password</label><br>
-                    <input type="text" name="password" id="password" class="purple-box">
+                    <input type="text" name="password" id="password" class="purple-box" required="True">
                 </div>
+                {% block content %}
+                    {{ form1.non_field_errors }}
+                    {% for field in form1 %}
+                        {% if field.errors %}
+                            <p>{{ field.label }} has the following errors:</p>
+                            <ul>
+                            {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                {% endblock %}
             </div>
             <div class="form-column">
                 <div class="purple-box">
                     <label for="confirm_email">Confirm Email</label><br>
-                    <input type="text" name="confirm_email" id="confirm_email" class="purple-box">
+                    <input type="text" name="confirm_email" id="confirm_email" class="purple-box" required="True">
                 </div>
                 <div class="purple-box">
                     <label for="confirm_password">Confirm Password</label><br>
-                    <input type="text" name="confirm_password" id="confirm_password" class="purple-box">
+                    <input type="text" name="confirm_password" id="confirm_password" class="purple-box" required="True">
                 </div>
             </div>
-            <button type="submit" class="pink-button">Register</button>
+            <button type="submit" class="pink-button" name="form1_submit">Register</button>
         </form>
 
         <form id="form2" class="form-container" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-column">
                 <div class="purple-box">
+                    <label for="username">Username</label><br>
+                    <input type="text" name="username" id="username" class="purple-box" required="True">
+                </div>
+                <div class="purple-box">
+                    <label for="email">Email</label><br>
+                    <input type="text" name="email" id="email" class="purple-box" required="True">
+                </div>
+                <div class="purple-box">
+                    <label for="password">Password</label><br>
+                    <input type="text" name="password" id="password" class="purple-box" required="True">
+                </div>
+                <div class="purple-box">
                     <label for="confirm_email">Confirm Email</label><br>
-                    <input type="text" name="confirm_email" id="confirm_email" class="purple-box">
+                    <input type="text" name="confirm_email" id="confirm_email" class="purple-box" required="True">
                 </div>
                 <div class="purple-box">
                     <label for="confirm_password">Confirm Password</label><br>
-                    <input type="text" name="confirm_password" id="confirm_password" class="purple-box">
+                    <input type="text" name="confirm_password" id="confirm_password" class="purple-box" required="True">
+                </div>
+                {% block content2 %}
+                    {{ form2.non_field_errors }}
+                    {% for field in form1 %}
+                        {% if field.errors %}
+                            <p>{{ field.label }} has the following errors:</p>
+                            <ul>
+                            {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                {% endblock %}
+            </div>
+
+            <div class="form-column">
+                <div class="purple-box">
+                    <label for="first_name">First Name</label><br>
+                    <input type="text" name="first_name" id="first_name" class="purple-box" required="True">
+                </div>
+                <div class="purple-box">
+                    <label for="last_name">Last Name</label><br>
+                    <input type="text" name="last_name" id="last_name" class="purple-box" required="True">
+                </div>
+                <div class="purple-box">
+                    <label for="contact_number">Contact Number</label><br>
+                    <input type="text" name="contact_number" id="contact_number" class="purple-box" required="True">
+                </div>
+                <div class="purple-box">
+                    <label for="past_experience">Past Experience</label><br>
+                    <textarea name="past_experience" id="past_experience" rows="6" class="purple-box"></textarea>
+                </div>
+                <div class="purple-box">
+                    <label for="additional_comments">Additional Comments</label><br>
+                    <textarea name="additional_comments" id="additional_comments" rows="6" class="purple-box"></textarea>
                 </div>
             </div>
-            <button type="submit" class="pink-button">Register</button>
+            <button type="submit" class="pink-button" name="form2_submit">Register</button>
         </form>
 
-        <div class="form-column">
-            {% block content %}
-                {{ form.non_field_errors }}
-                {% for field in form %}
-                    {% if field.errors %}
-                        <p>{{ field.label }} has the following errors:</p>
-                        <ul>
-                        {% for error in field.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
-                {% endfor %}
-            {% endblock %}
-        </div>
+        
     </div>
 
     <script>

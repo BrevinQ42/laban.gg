@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .forms import AccountForm
+from .forms import AccountForm, OrganizerAccountForm
 from .models import Account
 
 # Create your views here.
@@ -11,9 +11,17 @@ from .models import Account
 
 def register_view(request):
     if request.method == 'POST':
-        form = AccountForm(request.POST)
-        if form.is_valid():
-            form.save()
+        if 'form1_submit' in request.POST:
+            form1 = AccountForm(request.POST)
+            form2 = OrganizerAccountForm()
+            if form1.is_valid():
+                form1.save()
+        elif 'form2_submit' in request.POST:
+            form2 = OrganizerAccountForm(request.POST)
+            form1 = AccountForm()
+            if form2.is_valid():
+                form2.save()
     else:
-        form = AccountForm()
-    return render(request, 'register/register.html', {'form': form})
+        form1 = AccountForm()
+        form2 = OrganizerAccountForm()
+    return render(request, 'register/register.html', {'form1': form1, 'form2': form2})
