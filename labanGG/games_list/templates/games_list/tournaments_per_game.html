@@ -5,5 +5,16 @@
     </head>
     <body>
         <h1>{{ object.title }} Tournaments</h1>
+
+        <ul>
+            {% for entry in object.tournament_set.all %}
+            <li>
+              <a href="{{ entry.get_absolute_detail_url }}" >
+                {{ entry }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+          <br>
     </body>
 </html>
