@@ -15,12 +15,26 @@
             margin: auto;
             width: 60%;
             margin-top: 50px;
-            overflow: auto; 
+            overflow: auto;
         }
         .purple-box {
             background-color: #9400D3; 
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+            width: 25%;
+            color: white;
+        }
+        .purple-box-input {
+            background-color: #9400D3; 
             padding: 10px;
-            margin-bottom: 10px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
             color: white;
         }
         .pink-button {
@@ -40,57 +54,11 @@
         .header-row {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             margin-bottom: 20px;
         }
         h2 {
             font-size: 35px;
-        }
-        .upload-container {
-            display: flex;
-            align-items: center;
-        }
-        .upload-box {
-            background-color: #B3B3B3;
-            padding: 5px 10px; 
-            border-radius: 10px;
-            margin-right: 10px; 
-        }
-        .upload-text {
-            color: white;
-        }
-        .upload-button {
-            background-color: #B3B3B3;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-
-        /* Styling for the option buttons */
-        .option-button {
-            cursor: pointer;
-            padding: 5px 10px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        /* Styling for the active option button */
-        .option-button.active {
-            background-color: #ddd;
-        }
-
-          /* Styling for the forms */
-        .form-container {
-            display: none; /* Hide forms by default */
-        }
-
-        /* Styling for the active form */
-        .form-container.active {
-            display: block; /* Show active form */
         }
     </style>
 </head>
@@ -105,11 +73,11 @@
             {% csrf_token %}
                 <div class="purple-box">
                     <label for="email_username">Email or Username</label><br>
-                    <input type="text" name="email_username" id="email_username" class="purple-box" required="True">
+                    <input type="text" name="email_username" id="email_username" class="purple-box-input" required="True">
                 </div>
                 <div class="purple-box">
                     <label for="password">Password</label><br>
-                    <input type="text" name="password" id="password" class="purple-box" required="True">
+                    <input type="text" name="password" id="password" class="purple-box-input" required="True">
                 </div>
                 {% block content %}
                     {{ form.non_field_errors }}
