@@ -4,9 +4,6 @@
         {% block styles %}{% endblock %}
     </head>
     <body>
-        {% for object in object_list %}
-            {{ object.image }}
-            <a href="{{ object.get_absolute_url }}">{{ object }}</a>
-        {% endfor %}
+        <h1>{{ object.title }} Tournaments</h1>
     </body>
 </html>
