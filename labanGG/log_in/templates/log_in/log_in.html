@@ -16,6 +16,7 @@
             width: 60%;
             margin-top: 50px;
             overflow: auto;
+            text-align: center;
         }
         .purple-box {
             background-color: #9400D3; 
@@ -55,10 +56,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
         }
         h2 {
             font-size: 35px;
+        }
+        .underline-button {
+            color: inherit; /* Inherit text color */
+            text-decoration: none; /* Remove default underline */
+            border: none; /* Remove default border */
+            background-color: transparent; /* Transparent background */
+            cursor: pointer; /* Show pointer cursor on hover */
+            outline: none; /* Remove default focus outline */
+            border-bottom: 1px solid; /* Add underline */
+            padding: 0; /* Optional: Remove padding to make button more compact */
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -67,6 +78,10 @@
     <div class="black-box">
         <div class="header-row">
             <h2>Log In Account</h2>
+        </div>
+
+        <div>
+            <button class=underline-button id="goToRegisterPage">Don't have an account? Sign in for free</button>
         </div>
 
         <form id="form" method="post" enctype="multipart/form-data">
@@ -94,3 +109,12 @@
                 {% endblock %}
             <button type="submit" class="pink-button" name="form_submit">Log In</button>
         </form>
+
+        <script>
+            document.getElementById("goToRegisterPage").addEventListener("click", function() {
+                window.location.href = "{% url 'register:register_view' %}";
+            });
+        </script>
+
+</body>
+</html>
