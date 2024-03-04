@@ -16,11 +16,13 @@ def register_view(request):
             form2 = OrganizerAccountForm()
             if form1.is_valid():
                 form1.save()
+                print("Registered")
         elif 'form2_submit' in request.POST:
             form2 = OrganizerAccountForm(request.POST)
             form1 = AccountForm()
             if form2.is_valid():
                 form2.save()
+                return HttpResponse('Hello World! This came from the index view')
     else:
         form1 = AccountForm()
         form2 = OrganizerAccountForm()
