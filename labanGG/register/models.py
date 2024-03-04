@@ -7,8 +7,8 @@ def validate_contact_number(value):
     """
     Validate that the mobile number has the format #### ### ###
     """
-    if len(value) != 11 or not value.replace(' ', '').isdigit():
-        raise ValidationError('Mobile number must be in the format #### ### ###')
+    if len(value.replace(' ', '')) != 11 or not value.replace(' ', '').isdigit():
+        raise ValidationError('Mobile number must be in the format #### ### ####')
 
 class Account(models.Model):
     username = models.CharField(max_length=32)
@@ -17,14 +17,18 @@ class Account(models.Model):
     isOrganizer = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return self.email
+        return f"{self.username}, {self.email}"
 
 class OrganizerAccount(Account):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=32)
     contact_number = models.CharField(max_length=15, validators=[validate_contact_number])
-    past_experience = models.TextField()
-    additional_comments = models.TextField()
+    past_experience = models.TextField(blank = True, null = True)
+    additional_comments = models.TextField(blank = True, null = True)
 
     def __str__(self) -> str:
-        return self.email
+        return f"{self.username}, {self.email}"
+    
+    def save(self, *args, **kwargs):
+        self.isOrganizer = True
+        super().save(*args, **kwargs)

@@ -170,7 +170,7 @@
                 </div>
                 {% block content2 %}
                     {{ form2.non_field_errors }}
-                    {% for field in form1 %}
+                    {% for field in form2 %}
                         {% if field.errors %}
                             <p>{{ field.label }} has the following errors:</p>
                             <ul>
