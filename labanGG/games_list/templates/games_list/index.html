@@ -4,9 +4,11 @@
         {% block styles %}{% endblock %}
     </head>
     <body>
+        <h1>List of Games</h1>
         {% for object in object_list %}
             {{ object.image }}
             <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+            <br>
         {% endfor %}
     </body>
 </html>
