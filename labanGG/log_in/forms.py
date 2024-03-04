@@ -3,7 +3,7 @@ from django import forms
 from register.models import Account
 
 class LogInForm(forms.Form):
-    email_username = forms.CharField(max_length=100)
+    email_username = forms.CharField(max_length=100, label="Email or username")
     password = forms.CharField(max_length=32)
 
     def clean(self):
@@ -21,5 +21,7 @@ class LogInForm(forms.Form):
               pass
             else:
                self.add_error('password', "Password is incorrect")
+        else:
+           self.add_error('email_username', "Email or username does not exist ")
 
         return cleaned_data

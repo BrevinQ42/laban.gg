@@ -3,4 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <title>Log In Account</title>
+    <style>
+        body {
+            background-color: #4D24AC; 
+        }
+        .black-box {
+            background-color: black;
+            border-radius: 30px;
+            padding: 20px;
+            color: white;
+            margin: auto;
+            width: 60%;
+            margin-top: 50px;
+            overflow: auto; 
+        }
+        .purple-box {
+            background-color: #9400D3; 
+            padding: 10px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .pink-button {
+            background-color: #F6247B;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            float: right;
+        }
+        .form-column {
+            width: 45%;
+            float: left;
+            padding-right: 5%;
+        }
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 35px;
+        }
+        .upload-container {
+            display: flex;
+            align-items: center;
+        }
+        .upload-box {
+            background-color: #B3B3B3;
+            padding: 5px 10px; 
+            border-radius: 10px;
+            margin-right: 10px; 
+        }
+        .upload-text {
+            color: white;
+        }
+        .upload-button {
+            background-color: #B3B3B3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+
+        /* Styling for the option buttons */
+        .option-button {
+            cursor: pointer;
+            padding: 5px 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Styling for the active option button */
+        .option-button.active {
+            background-color: #ddd;
+        }
+
+          /* Styling for the forms */
+        .form-container {
+            display: none; /* Hide forms by default */
+        }
+
+        /* Styling for the active form */
+        .form-container.active {
+            display: block; /* Show active form */
+        }
+    </style>
 </head>
+
+<body>
+    <div class="black-box">
+        <div class="header-row">
+            <h2>Log In Account</h2>
+        </div>
+
+        <form id="form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="purple-box">
+                    <label for="email_username">Email or Username</label><br>
+                    <input type="text" name="email_username" id="email_username" class="purple-box" required="True">
+                </div>
+                <div class="purple-box">
+                    <label for="password">Password</label><br>
+                    <input type="text" name="password" id="password" class="purple-box" required="True">
+                </div>
+                {% block content %}
+                    {{ form.non_field_errors }}
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <p>{{ field.label }} has the following errors:</p>
+                            <ul>
+                            {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                {% endblock %}
+            <button type="submit" class="pink-button" name="form_submit">Log In</button>
+        </form>
