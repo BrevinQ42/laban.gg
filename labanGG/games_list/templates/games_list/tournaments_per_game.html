@@ -4,6 +4,7 @@
         {% block styles %}{% endblock %}
     </head>
     <body>
+        <button><a href="{{ object.get_absolute_games_url }}"> Back to Games </a> </button>
         <h1>{{ object.title }} Tournaments</h1>
 
         <ul>
@@ -17,10 +18,11 @@
               <br> Tier: {{entry.tier}}
               <br> Duration: {{entry.duration}}
               <br> <button> Follow </button> &nbsp;&nbsp; <button> Show Leaderboards </button>
+              {% empty %}
+                There are no tournamnets scheduled in this month involving {{ object.title }}
             </li>
             {% endfor %}
           </ul>
           <br>
-          <a href="{{ object.get_absolute_games_url }}"> Back to Games </a>
     </body>
 </html>
