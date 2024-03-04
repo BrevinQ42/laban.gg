@@ -7,6 +7,14 @@ FORMAT_CHOICES = (
     ('de', 'Double Elimination')
 )
 
+TIER_CHOICES = (
+    ('S', 'S Tier'),
+    ('A', 'A Tier'),
+    ('B', 'B Tier'),
+    ('C', 'C Tier'),
+    ('D', 'D Tier')
+)
+
 class Tournament(models.Model):
     game = models.ForeignKey("games_list.Game", on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
@@ -17,6 +25,10 @@ class Tournament(models.Model):
     tournyFormat = models.CharField(max_length=100, choices=FORMAT_CHOICES, default = 'se')
     details = models.TextField()
     prizePool = models.TextField(null = True)
+    tier = models.CharField(max_length=100, choices=TIER_CHOICES, default = 'A')
 
     def __str__(self):
         return '{}'.format(self.title)
+
+    def duration(self):
+        return self.dateStart - self.dateEnd
