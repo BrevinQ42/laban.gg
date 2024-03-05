@@ -1,28 +1,26 @@
 <html lang="en">
-    <head>
-        <title>{% block title %}My amazing site{% endblock %}</title>
-        {% block styles %}{% endblock %}
-    </head>
-    <body>
-        <button><a href="{{ object.get_absolute_games_url }}"> Back to Games </a> </button>
-        <h1>{{ object.title }} Tournaments</h1>
+<head>
+    <title>{% block title %}List of Tournaments{% endblock %}</title>
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <button><a href="{{ object.get_absolute_games_url }}"> Back to Games </a> </button>
+    <h1>{{ object.title }} Tournaments</h1>
 
-        <ul>
-            {% for entry in object.tournament_set.all %}
-                <img src={{entry.image.url}} width="100" height="150"/> <br>
+    <ul>
+        {% for entry in object.tournament_set.all %}
             <li>
-              <a href="{{ entry.get_absolute_detail_url }}" >
-                {{ entry }}
-              </a>
-              <br> Name: {{entry.title}}
-              <br> Tier: {{entry.tier}}
-              <br> Duration: {{entry.duration}}
-              <br> <button> Follow </button> &nbsp;&nbsp; <button> Show Leaderboards </button>
-              {% empty %}
-                There are no tournamnets scheduled in this month involving {{ object.title }}
+                <img src="{{ entry.image.url }}" width="100" height="150"/> <br>
+                <a href="{{ entry.get_absolute_detail_url }}">{{ entry.title }}</a> <br>
+                Name: {{ entry.name }} <br>
+                Tier: {{ entry.tier }} <br>
+                Schedule: {{ entry.schedule }} <br>
+                <button> Follow </button> &nbsp;&nbsp; <button> Show Leaderboards </button>
             </li>
-            {% endfor %}
-          </ul>
-          <br>
-    </body>
+            <br>
+        {% empty %}
+            There are no tournaments scheduled involving {{ object.title }}
+        {% endfor %}
+    </ul>
+</body>
 </html>

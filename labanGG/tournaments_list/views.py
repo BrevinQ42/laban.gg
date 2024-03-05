@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.views import View
+from .models import Tournament
 
 class TournamentsListView(View):
     def get(self, request):
-        return render(request, 'tournaments_list/index.html')
-# Create your views here.
+        tournaments = Tournament.objects.all()  # Retrieve all tournaments
+        return render(request, 'tournaments_list/index.html', {'tournaments': tournaments})

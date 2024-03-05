@@ -3,5 +3,5 @@ from .views import TournamentsListView
 urlpatterns = [
     path('', TournamentsListView.as_view(), name='index'),
 ]
-# This might be needed, depending on your Django version
+
 app_name = "tournaments_list"

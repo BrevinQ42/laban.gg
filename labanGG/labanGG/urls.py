@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('games/', include('games_list.urls', namespace="games_list")),
+    path('laban.gg/games', include('games_list.urls', namespace="games_list")),
     path('tournaments/', include('tournaments_list.urls', namespace="tournaments_list")),
     path('admin/', admin.site.urls),
     path("laban.gg/", include("create_tournament.urls"))
