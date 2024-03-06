@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
 from .forms import AccountForm, OrganizerAccountForm
@@ -16,13 +16,13 @@ def register_view(request):
             form2 = OrganizerAccountForm()
             if form1.is_valid():
                 form1.save()
-                print("Registered")
+                return redirect('/laban.gg/games')
         elif 'form2_submit' in request.POST:
             form2 = OrganizerAccountForm(request.POST)
             form1 = AccountForm()
             if form2.is_valid():
                 form2.save()
-                return HttpResponse('Hello World! This came from the index view')
+                return redirect('/laban.gg/games')
     else:
         form1 = AccountForm()
         form2 = OrganizerAccountForm()

@@ -24,7 +24,7 @@ urlpatterns = [
     path('laban.gg/games', include('games_list.urls', namespace="games_list")),
     path('tournaments/', include('tournaments_list.urls', namespace="tournaments_list")),
     path('admin/', admin.site.urls),
-    path("laban.gg/", include("create_tournament.urls"))
+    path("laban.gg/", include("create_tournament.urls")),
     path('log_in/', include('log_in.urls', namespace="log_in")),
     path('register/', include('register.urls', namespace="register")),
     

@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "create_tournament",
     'games_list',
-    'tournaments_list'
+    'tournaments_list',
     'register',
     'log_in',
 ]
