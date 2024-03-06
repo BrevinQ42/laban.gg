@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     "create_tournament",
     'games_list',
     'tournaments_list'
+    'register',
+    'log_in',
 ]
 
 MIDDLEWARE = [
