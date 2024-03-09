@@ -29,7 +29,7 @@ class OrganizerAccountForm(forms.ModelForm):
     confirm_password = forms.CharField(max_length=32)
     class Meta:
         model = OrganizerAccount
-        fields = ['username', 'email', 'password', 'first_name', 'last_name', 'contact_number', 'additional_comments']
+        fields = ['username', 'email', 'password', 'first_name', 'last_name', 'contact_number', 'past_experience', 'additional_comments']
 
         def clean(self):
             cleaned_data = super(AccountForm, self).clean()
