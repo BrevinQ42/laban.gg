@@ -21,13 +21,12 @@ from django.conf import settings
 from django.urls import include, path
 
 urlpatterns = [
-    path('laban.gg/games', include('games_list.urls', namespace="games_list")),
+    path('games/', include('games_list.urls', namespace="games_list")),
     path('tournaments/', include('tournaments_list.urls', namespace="tournaments_list")),
     path('admin/', admin.site.urls),
-    path("laban.gg/", include("create_tournament.urls")),
+    path('', include("create_tournament.urls")),
     path('log_in/', include('log_in.urls', namespace="log_in")),
-    path('register/', include('register.urls', namespace="register")),
-    
+    path('register/', include('register.urls', namespace="register")),    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
