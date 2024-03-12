@@ -1,8 +1,54 @@
 {% extends 'base_organizer.html' %}
 {% load static %}
 
-{% block title %}Player Applications To Tournament{% endblock %}
+{% block title %}Player Applications to [Tournament Name]{% endblock %}
 
 {% block content %}
-    
+	<head>
+        <meta charset="UTF-8">
+        <title>Player Applications to [Tournament Name]</title>
+        <style>
+            body {
+                background-color: #4D24AC; 
+            }
+            .header-row {
+                color: white;
+                margin-left: 35%;
+                margin-top: -75px;
+                width: 50%;
+            }
+            h2 {
+                font-size: 35px;
+            }
+            .search-bar {
+            	background-color: #4D24AC;
+            	margin-left: 20%;
+            	font-size: 18px;
+            	color: white;
+            }
+            .search-button {
+            	background-color: #4D24AC;
+            	border: none;
+            	cursor: pointer;    	
+            }
+            .search-button img {
+		        width: 17px;
+		        height: 17px;
+            }
+        </style>
+    </head>
+    <body>
+    	<div class="header-row">
+        	<h2>Player Applications to [Tournament Name]</h2>
+
+        	<form method="POST">
+			  {% csrf_token %}
+			  <input class="search-bar" type="search" placeholder="Search Players" name="usedKeyword">
+			  <button class="search-button" type="submit" name="searchPlayer" value="searchPlayer">
+			  	<img src="https://www.freeiconspng.com/uploads/search-icon-png-21.png">
+			  </button>
+			</form>
+        </div>
+    </body>
+</html>
 {% endblock %}
