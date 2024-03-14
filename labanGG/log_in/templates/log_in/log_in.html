@@ -122,11 +122,14 @@
             <button type="submit" class="pink-button" name="form_submit">Log In</button>
         </form>
 
-        <button class="log-in-as-guest-button">Log In as Guest</button>
+        <button class="log-in-as-guest-button" id="goToGamesPageAsGuest">Log In as Guest</button>
 
         <script>
             document.getElementById("goToRegisterPage").addEventListener("click", function() {
                 window.location.href = "{% url 'register:register_view' %}";
+            });
+            document.getElementById("goToGamesPageAsGuest").addEventListener("click", function() {
+                window.location.href = "{% url 'games_list:index' %}";
             });
         </script>
 
