@@ -14,7 +14,7 @@ def log_in_view(request):
                 user = authenticate(request, username=email_username, password=password)
                 if user is not None:
                     login(request, user)
-                    return redirect('/games')
+                    return redirect('/games/')
     else:
         form = LogInForm()
     return render(request, 'log_in/log_in.html', {'form': form})

@@ -15,9 +15,18 @@ class Account(models.Model):
     email = models.EmailField(max_length=100, unique=True)
     password = models.CharField(max_length=32)
     isOrganizer = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    last_login = models.DateTimeField(blank=True, null=True)
 
     def __str__(self) -> str:
         return f"{self.username}, {self.email}"
+    
+    def get_username(self):
+        return self.email
+
+    def has_module_perms(self, register):
+        return self.is_staff
 
 class OrganizerAccount(Account):
     first_name = models.CharField(max_length=100)

@@ -10,6 +10,12 @@ class EmailOrUsernameModelBackend:
                 user = Account.objects.get(email=username)
             except Account.DoesNotExist:
                 return None
-        if user:
+        if user and user.password == password:
             return user
         return None
+    
+    def get_user(self, user_id):
+        try:
+            return Account.objects.get(pk=user_id)
+        except Account.DoesNotExist:
+            return None
