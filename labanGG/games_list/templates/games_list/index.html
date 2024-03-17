@@ -16,6 +16,8 @@
             <a href="{{ object.get_absolute_url }}">{{ object }}</a>
             </li>
             <br>
+            {%empty%}
+                No Results Found
         {% endfor %}
     </body>
 </html>
