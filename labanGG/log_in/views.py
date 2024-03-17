@@ -5,6 +5,10 @@ from .forms import LogInForm
 # Create your views here.
 
 def log_in_view(request):
+    user = request.user
+    if (user):
+        logout(request)
+
     if request.method == 'POST':
         if 'form_submit' in request.POST:
             form = LogInForm(request.POST)

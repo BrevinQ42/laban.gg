@@ -83,6 +83,24 @@
             height: 80px; /* Set height of the image for create tournament button */
         }
 
+        .logout-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3a0ca3;
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: auto;
+        }
+
+        .logout-button:hover {
+            background-color: #624cda;
+        }
+
         .content {
             margin-left: 100px; /* Ensure content doesn't overlap with side panel */
             margin-top: 200px;
@@ -105,6 +123,7 @@
             <img src="https://i.gyazo.com/cbb5ad244a3e28c3dd89906f62f179fe.png" alt="laban.gg logo">
         </div>
         <!-- Other elements in the future to be added in the header panel can be placed here -->
+        <button class=logout-button id="logOutButton">Log out</button>
     </div>
 
     <!-- Content Block -->
@@ -113,5 +132,11 @@
         <!-- Page-specific content goes here -->
         {% endblock %}
     </div>
+
+    <script>
+        document.getElementById("logOutButton").addEventListener("click", function() {
+            window.location.href = "{% url 'log_in:log_in_view' %}";
+        });
+    </script>
 </body>
 </html>
