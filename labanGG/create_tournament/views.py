@@ -3,6 +3,7 @@ from .forms import TournamentForm
 from .models import Tournament
 
 def create_tournament(request):
+    user = request.user
     if request.method == 'POST':
         form = TournamentForm(request.POST, request.FILES)
         if form.is_valid():
@@ -18,4 +19,4 @@ def create_tournament(request):
             return redirect('/laban.gg/games')
     else:
         form = TournamentForm()
-    return render(request, 'create_tournament.html', {'form': form})
+    return render(request, 'create_tournament.html', {'form': form, 'user': user})

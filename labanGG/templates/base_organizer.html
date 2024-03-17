@@ -83,6 +83,10 @@
             height: 80px; /* Set height of the image for create tournament button */
         }
 
+        .logged-in {
+            font-size: 18px;
+        }
+
         .logout-button {
             display: inline-block;
             padding: 10px 20px;
@@ -123,6 +127,7 @@
             <img src="https://i.gyazo.com/cbb5ad244a3e28c3dd89906f62f179fe.png" alt="laban.gg logo">
         </div>
         <!-- Other elements in the future to be added in the header panel can be placed here -->
+        <p class="logged-in">Logged in as {{ user.username }}</p>
         <button class=logout-button id="logOutButton">Log out</button>
     </div>
 
