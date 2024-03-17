@@ -1,9 +1,11 @@
 from django.shortcuts import render
 
+from tournament.models import Tournament
 from register.models import Account
 
 
-def index(request):
+def index(request, id):
+	tournament = Tournament.objects.get(id=id)
 
 	context = {}
 	context['default_player_icon'] = "/account_profile_images/default.png"
