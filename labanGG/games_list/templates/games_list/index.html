@@ -16,7 +16,18 @@
                 padding: 20px;
                 color: white;
                 margin: auto;
-                width: 60%;
+                width: 70%;
+                margin-top: 50px;
+                overflow: auto; 
+            }
+
+            .head-box {
+                background-color: #4D24AC;
+                border-radius: 30px;
+                padding: 20px;
+                color: white;
+                margin: auto;
+                width: 70%;
                 margin-top: 50px;
                 overflow: auto; 
             }
@@ -24,7 +35,7 @@
             .grid-container {
                 flex: 33.33%;
                 display: grid;
-                grid-template: 330px / auto auto auto;
+                grid-template: 330px / auto auto auto auto;
                 
                 overflow: auto;
               }
@@ -67,7 +78,9 @@
             <input type="text" name="q" placeholder="Search Games">
             <button type="submit" >Search</button>
         </form>
+        </div>
 
+        <div class="purple-box">
         <div class="grid-container">
         {% for object in object_list %}
             <div class="grid-box">
