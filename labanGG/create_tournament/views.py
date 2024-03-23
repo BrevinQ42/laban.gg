@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import TournamentForm
 from .models import Tournament
+from register.models import Account
 
 def create_tournament(request):
     user = request.user
+    if user.isOrganizer == False:
+        return redirect('/log_in/')
     if request.method == 'POST':
         form = TournamentForm(request.POST, request.FILES)
         if form.is_valid():
