@@ -2,6 +2,7 @@ from django.db import models
 from games_list.models import Game  # Import Game model
 
 class Tournament(models.Model):
+    tournament_organizer = models.CharField(max_length=32, default = 'No Organizer')
     name = models.CharField(max_length=100)
     game = models.ForeignKey(Game, on_delete=models.CASCADE) # ForeignKey reference to model in games_list
     tier = models.CharField(max_length=1, choices=[('S', 'S'), ('A', 'A'), ('B', 'B'), ('C', 'C')])

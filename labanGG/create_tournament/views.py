@@ -12,6 +12,9 @@ def create_tournament(request):
         if form.is_valid():
             tournament = form.save(commit=False)
             tournament.game = form.cleaned_data['game']  # Associate with the selected game
+
+            # Set the tournament organizer to the current user's username
+            tournament.tournament_organizer = user.username
             
             # Check if image is provided
             if 'image' not in request.FILES:
