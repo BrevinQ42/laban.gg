@@ -4,91 +4,93 @@
     <meta charset="UTF-8">
     <title>{% block title %}Page Title{% endblock %}</title>
     <style>
-        /* CSS for the header and content */
         body {
-            margin: 0; /* Remove default margin */
-            padding: 0; /* Remove default padding */
+            margin: 0; 
+            padding: 0; 
         }
 
         .header {
-            background-color: black; /* Set background color of the header */
-            color: white; /* Set text color of the header */
-            padding: 5px; /* Add padding to the header */
-            width: 100%; /* Ensure the header spans the entire width */
-            box-sizing: border-box; /* Include padding in the width calculation */
-            position: fixed; /* Fix the header at the top */
-            top: 0; /* Position the header at the top */
-            left: 0; /* Position the header at the left */
-            z-index: 1000; /* Ensure the header appears above other content */
+            background-color: black; 
+            color: white; 
+            padding: 5px; 
+            width: 100%; 
+            box-sizing: border-box; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: 1000; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
         }
 
         .side-panel {
-            background-color: #1F0954; /* Set background color of the side panel */
-            color: white; /* Set text color of the side panel */
-            padding: 10px; /* Add padding to the side panel */
-            width: 200px; /* Set width of the side panel */
-            box-sizing: border-box; /* Include padding in the width calculation */
-            position: fixed; /* Fix the side panel */
-            top: 102px; /* Position the side panel below the header */
-            left: 0; /* Position the side panel at the left */
-            bottom: 0; /* Position the side panel at the bottom */
-            z-index: 999; /* Ensure the side panel appears below the header */
+            background-color: #1F0954; 
+            color: white; 
+            padding: 10px; 
+            width: 200px; 
+            box-sizing: border-box; 
+            position: fixed; 
+            top: 102px; 
+            left: 0; 
+            bottom: 0; 
+            z-index: 999; 
         }
 
         .side-panel button {
-            margin-top: 40px; /* Top margin */
-            background-color: #3a0ca3; /* Set background color of the button */
-            color: white; /* Set text color of the button */
-            border: none; /* Remove button border */
-            padding: 10px 100px; /* Increase padding around the button */
-            cursor: pointer; /* Set cursor to pointer on hover */
-            width: 100%; /* Ensure button spans the entire width of the side panel */
-            box-sizing: border-box; /* Include padding in the width calculation */
-            position: relative; /* Position the button relative to its container */
-            left: 50%; /* Move the button to the center of the side panel */
-            transform: translateX(-50%); /* Adjust the button's position to the left */
-            font-size: 18px; /* Set font size */
-            display: flex; /* Use flexbox */
-            justify-content: center; /* Center align horizontally */
-            align-items: center; /* Center align vertically */
+            margin-top: 40px; 
+            background-color: #3a0ca3; 
+            color: white; 
+            border: none; 
+            padding: 10px 100px; 
+            cursor: pointer; 
+            width: 100%; 
+            box-sizing: border-box; 
+            position: relative; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            font-size: 18px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
         }
 
         .side-panel button.home {
-            margin-top: 40px; /* Top margin */
-            background-color: #3a0ca3; /* Set background color of the button */
-            color: white; /* Set text color of the button */
-            border: none; /* Remove button border */
-            padding: 10px 100px; /* Increase padding around the button */
-            cursor: pointer; /* Set cursor to pointer on hover */
-            width: 100%; /* Ensure button spans the entire width of the side panel */
-            box-sizing: border-box; /* Include padding in the width calculation */
-            position: relative; /* Position the button relative to its container */
-            left: 50%; /* Move the button to the center of the side panel */
-            transform: translateX(-50%); /* Adjust the button's position to the left */
-            font-size: 18px; /* Set font size */
-            display: flex; /* Use flexbox */
-            justify-content: center; /* Center align horizontally */
-            align-items: center; /* Center align vertically */
+            margin-top: 40px; 
+            background-color: #3a0ca3; 
+            color: white; 
+            border: none; 
+            padding: 10px 100px; 
+            cursor: pointer; 
+            width: 100%; 
+            box-sizing: border-box; 
+            position: relative; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            font-size: 18px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
         }   
 
         .side-panel button.home img {
-            margin-right: 30px; /* Add space between the image and the text */
-            width: 80px; /* Set width of the image for home button */
-            height: 80px; /* Set height of the image for home button */
+            margin-right: 30px; 
+            width: 80px; 
+            height: 80px; 
         }
 
         .side-panel button img {
-            margin-right: 15px; /* Add space between the image and the text */
-            width: 100px; /* Set width of the image for create tournament button */
-            height: 80px; /* Set height of the image for create tournament button */
+            margin-right: 15px; 
+            width: 100px; 
+            height: 80px; 
         }
 
         .logged-in {
             font-size: 18px;
+            margin-left: 1800px; 
         }
 
         .logout-button {
-            display: inline-block;
             padding: 10px 20px;
             background-color: #3a0ca3;
             color: white;
@@ -98,7 +100,6 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            margin-left: auto;
         }
 
         .logout-button:hover {
@@ -119,7 +120,6 @@
         <!-- Create Tournament Button -->
         <button onclick="location.href='/createtournament/'"><img src="https://i.gyazo.com/34b0ae203a3aa81f6955c01d4286108b.png?fbclid=IwAR3Pb0OlvOZyxdavFp5WaRQwUywSesyJjWfdy6AntzkuSgsKPfoQYDbZh08" alt="Tournament Icon"> <span>Create Tournament</span></button>
     </div>
-
     <!-- Header Panel -->
     <div class="header">
         <div class="logo">
