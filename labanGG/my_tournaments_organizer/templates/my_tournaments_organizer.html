@@ -1,4 +1,3 @@
-<!-- templates/my_tournaments.html -->
 {% extends 'base_organizer.html' %}
 {% load static %}
 
@@ -18,9 +17,10 @@
             padding: 20px;
             color: white;
             margin: auto;
-            width: 60%;
+            width: 30%;
             margin-top: 50px;
             overflow: auto; 
+            position: relative; 
         }
         .purple-box {
             background-color: #9400D3; 
@@ -58,27 +58,77 @@
             border-radius: 10px;
             margin-right: 10px; 
         }
-
+        .tournament-item {
+            background-color: black;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .tournament-image {
+            float: left;
+            margin-right: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .tournament-info {
+            overflow: hidden;
+            margin-left: 160px;
+        }
+        .tournament-details {
+            float: right;
+            margin-top: 0;
+        }
+        .edit-button {
+            background-color: #F6247B; 
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            position: absolute; 
+            top: 40px; 
+            right: 20px; 
+            text-decoration: none; 
+        }
+        .pink-box {
+            background-color: #F6247B;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .icon {
+            width: 20px; 
+            height: 20px;
+            margin-right: 5px;
+            vertical-align: middle; 
+        }
     </style>
 </head>
 <body>
-    <div class="black-box">
-        <div class="header-row">
-            <h2>My Tournaments</h2>
-        </div>
-        <div class="tournament-list">
-            {% for tournament in tournaments %}
+    <h2 style="text-align: center; color: white;">My Tournaments</h2>
+    <div class="tournament-list">
+        {% for tournament in tournaments %}
+        <div class="black-box">
             <div class="tournament-item">
-                <img src="{{ tournament.image.url }}" alt="{{ tournament.name }} Image" style="max-width: 200px; max-height: 200px;">
-                <h3>{{ tournament.name }}</h3>
-                <p>Schedule: {{ tournament.schedule }}</p>
-                <p>Tier: {{ tournament.get_tier_display }}</p>
-                <a href="{% url 'my_tournaments_organizer:edit_tournament' tournament.id %}">Edit</a>
+                <div class="tournament-image">
+                    <div class="pink-box">
+                        <img src="{{ tournament.image.url }}" alt="{{ tournament.name }} Image" style="max-width: 150px; max-height: 150px;">
+                    </div>
+                </div>
+                <div class="tournament-info">
+                    <h3>{{ tournament.name }}</h3>
+                    <p>
+                        <img src="https://i.gyazo.com/fb6ab2d876f03728b8409988f14b1c68.png?fbclid=IwAR0Z4PoatuWD3FgURTzOLIa17VLk3EhyC77hjD4rRqW8fwHxussBc8axpfM" alt="Calendar Icon" class="icon"> Schedule: {{ tournament.schedule }}
+                    </p>
+                    <p>
+                        <img src="https://i.gyazo.com/ba5724c3a958c2a45f3d9cb246331803.png?fbclid=IwAR3-g3tkzxlUn9NDJG_pDqUVKiXBXY_jhYW18h1Tg4BwgDLDQ32acWjzSI8" alt="Tier Icon" class="icon"> Tier: {{ tournament.get_tier_display }}
+                    </p>
+                </div>
+                <a href="{% url 'my_tournaments_organizer:edit_tournament' tournament.id %}" class="edit-button">Edit</a>
             </div>
-            {% empty %}
-            <p>No tournaments created yet.</p>
-            {% endfor %}
         </div>
+        {% empty %}
+        <p>No tournaments created yet.</p>
+        {% endfor %}
     </div>
 </body>
 </html>
