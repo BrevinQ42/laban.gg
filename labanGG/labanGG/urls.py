@@ -26,7 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("create_tournament.urls")),
     path('log_in/', include('log_in.urls', namespace="log_in")),
-    path('register/', include('register.urls', namespace="register")),    
+    path('register/', include('register.urls', namespace="register")), 
+    path('my_tournaments_organizer/', include('my_tournaments_organizer.urls', namespace="my_tournaments_organizer")),   
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

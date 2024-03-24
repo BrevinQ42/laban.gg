@@ -22,7 +22,7 @@ def create_tournament(request):
                 tournament.image = "tournament_images/labanlogo.png"
 
             tournament.save()
-            return redirect('/laban.gg/games')
+            return redirect('/games/')
     else:
         form = TournamentForm()
     return render(request, 'create_tournament.html', {'form': form, 'user': user})
