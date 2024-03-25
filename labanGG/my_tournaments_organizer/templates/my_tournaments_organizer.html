@@ -124,6 +124,7 @@
                     </p>
                 </div>
                 <a href="{% url 'my_tournaments_organizer:edit_tournament' tournament.id %}" class="edit-button">Edit</a>
+                <a href="/tournament{{ tournament.id }}/player_applications_list" class="pink-button">Player Applications</a>
             </div>
         </div>
         {% empty %}
