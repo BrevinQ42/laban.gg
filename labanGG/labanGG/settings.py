@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'register',
     'log_in',
     'my_tournaments_organizer',
+    'join_tournament'
   
 ]
 
