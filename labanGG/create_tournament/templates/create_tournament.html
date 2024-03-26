@@ -71,6 +71,10 @@
                 {% csrf_token %}
                 <div class="form-column">
                     <div class="purple-box">
+                        <label for="id_tournament_organizer">Tournament Organizer:</label>
+                        <input type="text" id="id_tournament_organizer" value="{{ user.username }}" disabled>
+                    </div>
+                    <div class="purple-box">
                         {{ form.name.label_tag }}
                         {{ form.name }}
                     </div>

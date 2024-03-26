@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'register',
     'log_in',
     'player_applications_list',
+    'my_tournaments_organizer',
+    'join_tournament'
 ]
 
 MIDDLEWARE = [
@@ -96,6 +98,11 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+
+AUTHENTICATION_BACKENDS = [
+    'register.backends.EmailOrUsernameModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
