@@ -84,37 +84,37 @@
         </style>
     </head>
     <body>
-    	<div class="header-row">
-            <h2>Player Applications</h2>
+        <form method="POST">
+            {% csrf_token %}
+        	<div class="header-row">
+                <h2>Player Applications</h2>
 
-        	<form method="POST">
-			  {% csrf_token %}
-			  <input class="search-bar" type="search" placeholder="Search Players" name="usedKeyword">
-			  <button class="search-button" type="submit" name="searchPlayer" value="searchPlayer">
-			  	<img src="https://www.freeiconspng.com/uploads/search-icon-png-21.png">
-			  </button>
-			</form>
-        </div>
+    			<input class="search-bar" type="search" placeholder="Search Players" name="usedKeyword">
+    			<button class="search-button" type="submit" name="searchPlayer" value="searchPlayer">
+    			 <img src="https://www.freeiconspng.com/uploads/search-icon-png-21.png">
+    			</button>
+            </div>
 
-        <div class="player-apps-container">
-            {% for applicant in applicants %}
-                <div class="player-apps">
-                    <div class="player-apps-header">
-                        <u>{{ applicant.username }}</u>
+            <div class="player-apps-container">
+                {% for applicant in applicants %}
+                    <div class="player-apps">
+                        <div class="player-apps-header">
+                            <u>{{ applicant.username }}</u>
 
-                        <button class="player-apps-button" type="submit" name="acceptApp{{ applicant.id }}" value="acceptApp{{ applicant.id }}">
-                            <img src="https://cdn-icons-png.flaticon.com/512/5974/5974759.png">
-                        </button>
+                            <button class="player-apps-button" type="submit" name="acceptApp{{ applicant.id }}" value="acceptApp{{ applicant.id }}">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5974/5974759.png">
+                            </button>
 
-                        <button class="player-apps-button" type="submit" name="rejectApp{{ applicant.id }}" value="rejectApp{{ applicant.id }}">
-                            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png">
-                        </button>
+                            <button class="player-apps-button" type="submit" name="rejectApp{{ applicant.id }}" value="rejectApp{{ applicant.id }}">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png">
+                            </button>
+                        </div>
+
+                        <img src="{{ default_player_icon }}">
                     </div>
-
-                    <img src="{{ default_player_icon }}">
-                </div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
+        </form>
     </body>
 </html>
 {% endblock %}
