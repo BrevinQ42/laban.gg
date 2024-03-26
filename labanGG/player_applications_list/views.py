@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from tournament.models import Tournament
+from create_tournament.models import Tournament
 from register.models import Account
 
 
