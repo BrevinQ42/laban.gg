@@ -1,12 +1,12 @@
 {% extends 'base_organizer.html' %}
 {% load static %}
 
-{% block title %}[Tournament Name] Player Applications{% endblock %}
+{% block title %}{{ tournament.name }} Player Applications{% endblock %}
 
 {% block content %}
 	<head>
         <meta charset="UTF-8">
-        <title>[Tournament Name] Player Applications</title>
+        <title>{{ tournament.name }} Player Applications</title>
         <style>
             body {
                 background-color: #4D24AC; 
@@ -95,7 +95,13 @@
     			</button>
             </div>
 
+            <h2 style='margin-left:150px; color:white; font-size:24px'>{{ message }}</h2>
+
             <div class="player-apps-container">
+                {% if not applicants %}
+                    <h2 style='margin-left:100px; color:white; font-size:24px'>No Results Found</h2>
+                {% endif %}
+
                 {% for applicant in applicants %}
                     <div class="player-apps">
                         <div class="player-apps-header">
