@@ -13,3 +13,4 @@ class Tournament(models.Model):
     prize_pool = models.TextField()
     more_details = models.TextField()
     image = models.ImageField(upload_to='tournament_images', blank=True, null=True)
+    status = models.CharField(max_length=10, default = 'Upcoming')
