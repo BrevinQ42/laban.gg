@@ -6,8 +6,10 @@ from register.models import Account
 
 def index(request, id):
 	tournament = Tournament.objects.get(id=id)
-
+	
 	context = {}
+	context['tournament'] = tournament
+
 	context['default_player_icon'] = "/account_profile_images/default.png"
 
 	keyword = ""	
