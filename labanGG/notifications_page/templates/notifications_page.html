@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notification Settings</title>
+</head>
+<body>
+    <h1>Notification Settings</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="notifications1">Notification 1</label>
+        <input type="checkbox" id="notifications1" name="notifications1" {% if notifications_page.notifications1 %}checked{% endif %}><br>
+
+        <label for="notifications2">Notification 2</label>
+        <input type="checkbox" id="notifications2" name="notifications2" {% if notifications_page.notifications2 %}checked{% endif %}><br>
+
+        <label for="notifications3">Notification 3</label>
+        <input type="checkbox" id="notifications3" name="notifications3" {% if notifications_page.notifications3 %}checked{% endif %}><br>
+
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
