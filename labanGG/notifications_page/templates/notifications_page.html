@@ -68,11 +68,12 @@
                 <input type="checkbox" id="notifications3" name="notifications3" {% if notifications_page.notifications3 %}checked{% endif %}><br>
         
                 <button type="submit" class="pink-button">Save</button>
+                {% if request.method == 'POST' %}
+                    {% if notifications_page %}
+                        <p class="success-message">Successfully updated settings</p>
+                    {% endif %}
+                {% endif %}
             </form>
         </div>
     </body>
-</html>
 {% endblock %}
-
-
-
