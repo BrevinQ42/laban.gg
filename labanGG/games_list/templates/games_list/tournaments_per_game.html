@@ -98,11 +98,6 @@
         </form>
         <button class="pink-button"> Show Leaderboards </button>
 
-        {% if request.user.isOrganizer %}
-        <a href="{% url 'create_tournament' %}">
-            <button class="pink-button"> Create Tournament </button>
-        </a>
-        {% endif %}
 
     </center>
     </div>
