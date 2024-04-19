@@ -1,0 +1,125 @@
+{% extends 'base_organizer.html' %}
+{% load static %}
+
+{% block title %}Tournament Details{% endblock %}
+
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Create Tournament</title>
+        <style>
+            body {
+                background-color: #4D24AC; 
+            }
+            .black-box {
+                background-color: black;
+                border-radius: 30px;
+                padding: 20px;
+                color: white;
+                margin: auto;
+                width: 60%;
+                margin-top: 50px;
+                overflow: auto; 
+            }
+            .purple-box {
+                background-color: #9400D3; 
+                padding: 10px;
+                margin-bottom: 10px;
+                color: white;
+            }
+            .pink-button {
+                background-color: #F6247B;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 50px;
+                cursor: pointer;
+                float: right;
+                margin-top: 20px;
+            }
+            .form-column {
+                width: 45%;
+                float: left;
+                padding-right: 5%;
+            }
+            .header-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            }
+            h2 {
+                font-size: 35px;
+            }
+            .upload-box {
+                background-color: #B3B3B3;
+                padding: 5px 10px; 
+                border-radius: 10px;
+                margin-right: 10px; 
+            }
+
+        </style>
+    </head>
+    <body>
+    <div class="black-box">
+        <div class="header-row">
+            <h2>Tournament Details</h2>
+        </div>
+
+        <!-- Display Tournament Details -->
+        <div class="form-column">
+            <div class="purple-box">
+                <label for="id_tournament_organizer">Tournament Organizer:</label>
+                <input type="text" id="id_tournament_organizer" value="{{ tournament.tournament_organizer }}" disabled>
+            </div>
+            <div class="purple-box">
+                <label for="id_name">Name:</label>
+                <input type="text" id="id_name" value="{{ tournament.name }}" disabled>
+            </div>
+            <div class="purple-box">
+                <label for="id_game">Game:</label>
+                <input type="text" id="id_game" value="{{ tournament.game }}" disabled>
+            </div>
+            <div class="purple-box">
+                <label for="id_tier">Tier:</label>
+                <input type="text" id="id_tier" value="{{ tournament.get_tier_display }}" disabled>
+            </div>
+            <div class="purple-box">
+                <label for="id_location">Location:</label>
+                <input type="text" id="id_location" value="{{ tournament.location }}" disabled>
+            </div>
+            <div class="purple-box">
+                <label for="id_format">Format:</label>
+                <input type="text" id="id_format" value="{{ tournament.get_format_display }}" disabled>
+            </div>
+            <div class="purple-box">
+                <label for="id_application_link">Application Link:</label>
+                <input type="text" id="id_application_link" value="{{ tournament.application_link }}" disabled>
+            </div>
+            <div class="purple-box">
+                <label for="id_schedule">Schedule:</label>
+                <textarea id="id_schedule" disabled>{{ tournament.schedule }}</textarea>
+            </div>
+            <div class="purple-box">
+                <label for="id_prize_pool">Prize Pool:</label>
+                <textarea id="id_prize_pool" disabled>{{ tournament.prize_pool }}</textarea>
+            </div>
+            <div class="purple-box">
+                <label for="id_more_details">More Details:</label>
+                <textarea id="id_more_details" disabled>{{ tournament.more_details }}</textarea>
+            </div>
+            <div class="purple-box">
+                <label for="id_status">Status:</label>
+                <input type="text" id="id_status" value="{{ tournament.status }}" disabled>
+            </div>
+        </div>
+        <!-- End of Tournament Details -->
+
+        <!-- Join Tournament Button -->
+            </div>
+            <a href="/jointournament/" class="pink-button">Join Tournament</a>
+        </div>
+        <!-- End of Join Tournament Button -->
+
+    </div>
+{% endblock %}
