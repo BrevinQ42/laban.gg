@@ -5,30 +5,14 @@ from join_tournament.views import join_tournament
 from join_tournament.models import TournamentPlayer
 
 # Create your views here.
-def tournament_details(request):
+def tournament_details(request, id):
     user = request.user
-    if request.method == 'POST':
-        tournament_organizer = request.POST.get('tournament_organizer')
-        name = request.POST.get('name')
-        game = request.POST.get('game')
-        tier = request.POST.get('tier')
-        location = request.POST.get('location')
-        format = request.POST.get('format')
-        application_link = request.POST.get('application_link')
-        schedule = request.POST.get('schedule')
-        prize_pool = request.POST.get('prize_pool')
-        more_details = request.POST.get('more_details')
-        status = request.POST.get('status')
-
-
-        td = Tournament(tournament_organizer=tournament_organizer, name=name, game=game, tier=tier, location=location, format=format, application_link=application_link, schedule=schedule, prize_pool=prize_pool, more_details=more_details, status=status)
-        td.save()
-
-        return render(request, 'tournament_details.html', {'tournament_details': td, 'user':user})
+    td = Tournament.objects.get(id=id)
+ 
+    return render(request, 'tournament_details.html', {'tournament': td, 'user':user})
     
-    return render(request, 'tournament_details.html', {'user': user})
-
-def join_tournament(request):
+def join_tournament(request, id):
+    tournament = Tournament.objects.get(id=id)
     user = request.user
     if user.isOrganizer == True:
         return redirect('/log_in/')
@@ -38,7 +22,7 @@ def join_tournament(request):
         age = request.POST.get('age')
         country = request.POST.get('country')
 
-        jt = TournamentPlayer(ign=ign, age=age, country=country, accountUser=accountUser, account=user)
+        jt = TournamentPlayer(ign=ign, age=age, country=country, accountUser=accountUser, account=user, tournament=tournament)
         jt.save()
 
         return render(request, 'join_tournament.html', {'join_tournament': jt, 'user':user})
