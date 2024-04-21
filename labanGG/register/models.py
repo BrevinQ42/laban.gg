@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.urls import reverse
 
 # Create your models here.
 
@@ -27,6 +28,9 @@ class Account(models.Model):
 
     def has_module_perms(self, register):
         return self.is_staff
+    
+    def get_absolute_url(self):
+        return reverse('player_profile:player-detail', kwargs={'pk':self.pk})
 
 class OrganizerAccount(Account):
     first_name = models.CharField(max_length=100)
