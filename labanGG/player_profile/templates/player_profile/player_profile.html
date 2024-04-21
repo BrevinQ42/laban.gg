@@ -1,0 +1,82 @@
+{% extends base_template %} 
+
+{% load static %}
+{% block title %}Player Profile{% endblock %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: #4D24AC; 
+        }
+
+        .purple-box {
+            background-color: #4D24AC;
+            border-radius: 30px;
+            padding: 20px;
+            color: white;
+            margin: auto;
+            width: 70%;
+            margin-top: 50px;
+            overflow: auto; 
+        }
+
+        .head-box {
+            background-color: #4D24AC;
+            border-radius: 30px;
+            padding: 20px;
+            color: white;
+            margin: auto;
+            width: 70%;
+            margin-top: 50px;
+            overflow: auto; 
+        }
+
+        .grid-container {
+            flex: 33.33%;
+            display: grid;
+            grid-template: 330px / auto auto auto auto;
+            
+            overflow: auto;
+            }
+
+        .grid-box{
+
+        }
+
+        a:link {
+            color: white;
+            background-color: transparent;
+            text-decoration: none;
+            }
+            
+            a:visited {
+            color: white;
+            background-color: transparent;
+            text-decoration: underline;
+            }
+            
+            a:hover {
+            color: red;
+            background-color: transparent;
+            text-decoration: underline;
+            }
+            
+            a:active {
+            color: yellow;
+            background-color: transparent;
+            text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div class="purple-box">
+        <center>
+        <h1>{{ object.username }}</h1>
+        </center>
+        </div>
+    
+</body>
+</html>
+{% endblock %}
