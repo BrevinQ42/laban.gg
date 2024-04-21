@@ -6,25 +6,31 @@ from join_tournament.models import TournamentPlayer
 
 # Create your views here.
 def tournament_details(request, id):
-    user = request.user
-    td = Tournament.objects.get(id=id)
- 
-    return render(request, 'tournament_details.html', {'tournament': td, 'user':user})
-    
-def join_tournament(request, id):
+    context = {}
+
     tournament = Tournament.objects.get(id=id)
-    user = request.user
-    if user.isOrganizer == True:
-        return redirect('/log_in/')
-    if request.method == 'POST':
-        accountUser = user.username
-        ign = request.POST.get('ign')
-        age = request.POST.get('age')
-        country = request.POST.get('country')
-
-        jt = TournamentPlayer(ign=ign, age=age, country=country, accountUser=accountUser, account=user, tournament=tournament)
-        jt.save()
-
-        return render(request, 'join_tournament.html', {'join_tournament': jt, 'user':user})
     
-    return render(request, 'join_tournament.html', {'user': user})
+    user = request.user
+    context['user'] = user
+    context['base_template'] = 'base_organizer.html' if user.isOrganizer else 'base_attendee.html'
+
+    if request.POST.get('updateTourneyStatus'):
+        if tournament.status == "Upcoming":
+            tournament.status = "Pending"
+        elif tournament.status == "Pending" or tournament.status == "Paused":
+            tournament.status = "Ongoing"
+        elif tournament.status == "Ongoing":
+            tournament.status = "Paused"
+
+        tournament.save()
+
+    elif request.POST.get('notStartingYet'):
+        tournament.status = "Upcoming"
+        tournament.save()
+
+    elif request.POST.get('goToJoinTourney'):
+        return redirect(f'/tournament{id}/jointournament/')
+
+    context['tournament'] = tournament
+
+    return render(request, 'tournament_details.html', context)
