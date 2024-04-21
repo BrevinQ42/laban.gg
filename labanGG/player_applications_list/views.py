@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from create_tournament.models import Tournament
-from register.models import Account
+from join_tournament.models import TournamentPlayer
 
 
 def index(request, id):
@@ -12,25 +12,31 @@ def index(request, id):
 
 	context['default_player_icon'] = "/account_profile_images/default.png"
 
-	keyword = ""	
-	applicants = Account.objects.filter(isOrganizer=False)
+	keyword = ""
+	applicants = TournamentPlayer.objects.filter(tournament=tournament)
 
 	if request.method == 'POST':
 		if request.POST.get('searchPlayer'):
 			keyword = request.POST.get('usedKeyword')
-			applicants = applicants.filter(username__contains=keyword)
+			applicants = applicants.filter(ign__contains=keyword)
 		else:
 			for applicant in applicants:
 				if request.POST.get('acceptApp' + str(applicant.id)):
-					# set application status to accepted
+					applicant = TournamentPlayer.objects.get(id=applicant.id)
+					applicant.application_status = "Accepted"
+					applicant.save()
 					
-					context['message'] = applicant.username + "'s application was accepted."
+					context['message'] = applicant.ign + "'s application was accepted."
 					break
 				elif request.POST.get('rejectApp' + str(applicant.id)):
-					# set application status to rejected
+					applicant = TournamentPlayer.objects.get(id=applicant.id)
+					applicant.application_status = "Rejected"
+					applicant.save()
 
-					context['message'] = applicant.username + "'s application was rejected."
+					context['message'] = applicant.ign + "'s application was rejected."
 					break
+
+	applicants = applicants.filter(application_status="Pending")
 
 	context['applicants'] = applicants
 

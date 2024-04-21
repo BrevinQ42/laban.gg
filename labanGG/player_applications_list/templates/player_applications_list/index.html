@@ -60,7 +60,7 @@
                 width: 80%;
                 color: white;
                 display: flex;
-                font-size: 22px;
+                font-size: 18px;
                 justify-content: center;
                 align-items: center;
             }
@@ -105,7 +105,7 @@
                 {% for applicant in applicants %}
                     <div class="player-apps">
                         <div class="player-apps-header">
-                            <u>{{ applicant.username }}</u>
+                            <u>{{ applicant.ign }}</u>
 
                             <button class="player-apps-button" type="submit" name="acceptApp{{ applicant.id }}" value="acceptApp{{ applicant.id }}">
                                 <img src="https://cdn-icons-png.flaticon.com/512/5974/5974759.png">
