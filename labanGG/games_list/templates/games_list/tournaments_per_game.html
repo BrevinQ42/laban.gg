@@ -97,6 +97,8 @@
             <button type="submit" >Search</button>
         </form>
         <button class="pink-button"> Show Leaderboards </button>
+
+
     </center>
     </div>
 
@@ -114,13 +116,19 @@
                     Tier: {{ entry.tier }} <br>
                     Schedule: {{ entry.schedule }} <br>
                     Status: {{ entry.status }} <br>
+
+                    {% if request.user.isOrganizer %}
+                    {% else %}
                     <button> Follow </button>
+                    {% endif %}
             </div>
             <br>
         {% empty %}
             There are no tournaments scheduled involving {{ object.title }}
         {% endfor %}
+
         </div>
+
     </ul>
 </div>
 </body>
