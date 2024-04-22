@@ -58,9 +58,15 @@
             <h1>Notification Settings</h1>
             <form method="post">
                 {% csrf_token %}
-                <label for="notifications1">A joined tourney becomes ongoing</label>
+                <label for="notifications1">Ongoing Tournaments Notifications</label>
                 <input type="checkbox" id="notifications1" name="notifications1" {% if notifications_page.notifications1 %}checked{% endif %}><br>
+
+                <label for="notifications2">Accepted Applications Notifications</label>
+                <input type="checkbox" id="notifications2" name="notifications2" {% if notifications_page.notifications2 %}checked{% endif %}><br>
         
+                <label for="notifications3">Rejected Applications Notifications</label>
+                <input type="checkbox" id="notifications3" name="notifications3" {% if notifications_page.notifications3 %}checked{% endif %}><br>
+
                 <button type="submit" class="pink-button">Save</button>
                 {% if request.method == 'POST' %}
                     {% if notifications_page %}
@@ -71,8 +77,22 @@
         </div>
 
         <div class="black-box">
-            <h2>Notifications</h2>
-            <p>{{ message }}</p>
+            <h2>Ongoing Tournaments Notifications</h2>
+            {% if message1 %}
+                <p>{{ message1 }}</p>
+            {% endif %}
+        </div>
+        <div class="black-box">
+            <h2>Accepted Applications Notifications</h2>
+            {% if message2 %}
+                <p>{{ message2 }}</p>
+            {% endif %}
+        </div>
+        <div class="black-box">
+            <h2>Rejected Applications Notifications</h2>
+            {% if message3 %}
+                <p>{{ message3 }}</p>
+            {% endif %}
         </div>
     </body>
 {% endblock %}
