@@ -15,6 +15,8 @@ def notifications_page(request):
         notifications_page.notifications1 = request.POST.get('notifications1') == 'on'
         notifications_page.notifications2 = request.POST.get('notifications2') == 'on'
         notifications_page.save()
+    
+    message = None
 
     # Update message based on tournament status
     if notifications_page.notifications1 == True:
@@ -22,13 +24,14 @@ def notifications_page(request):
         user_tournaments = TournamentPlayer.objects.filter(account=user)
         ongoing_tournaments = Tournament.objects.filter(status='Ongoing', id__in=user_tournaments.values_list('tournament_id', flat=True))
         for tournament in ongoing_tournaments:
-            notifications_page.message = f"The tournament '{tournament.name}' is now ongoing."
-            notifications_page.save()
+            message = f"The tournament '{tournament.name}' is now ongoing."
+            break  # Stop after finding the first ongoing tournament
 
     base_template = get_base_template(request)
 
     context = {
         'notifications_page': notifications_page,
+        'message': message,
         'base_template': base_template,
     }
     return render(request, 'notifications_page.html', context)
