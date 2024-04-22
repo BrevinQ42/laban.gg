@@ -1,6 +1,7 @@
 from django.db import models
 from register.models import Account
 from create_tournament.models import Tournament
+from django.urls import reverse
 
 class TournamentPlayer(models.Model):
     accountUser = models.CharField(max_length=32, default='no account')
@@ -11,3 +12,6 @@ class TournamentPlayer(models.Model):
     country = models.CharField(max_length=64)
     application_status = models.CharField(max_length=25, default = 'Pending')
     ranking = models.IntegerField(default= -1)
+
+    def get_absolute_url(self):
+        return reverse('player_profile:player-detail', kwargs={'pk':self.pk})

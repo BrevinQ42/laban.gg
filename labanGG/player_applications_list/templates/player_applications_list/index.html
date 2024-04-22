@@ -105,7 +105,7 @@
                 {% for applicant in applicants %}
                     <div class="player-apps">
                         <div class="player-apps-header">
-                            <u>{{ applicant.ign }}</u>
+                            <u><a href="{{ applicant.get_absolute_url }}">{{ applicant.ign }}</a></u>
 
                             <button class="player-apps-button" type="submit" name="acceptApp{{ applicant.id }}" value="acceptApp{{ applicant.id }}">
                                 <img src="https://cdn-icons-png.flaticon.com/512/5974/5974759.png">
