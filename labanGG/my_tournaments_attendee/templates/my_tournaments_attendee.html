@@ -1,5 +1,4 @@
-{% extends 'base_organizer.html' %}
-{% load static %}
+{% extends 'base_attendee.html' %}
 
 {% block title %}My Tournaments{% endblock %}
 
@@ -79,17 +78,6 @@
             float: right;
             margin-top: 0;
         }
-        .edit-button {
-            background-color: #F6247B; 
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            position: absolute; 
-            top: 40px; 
-            right: 20px; 
-            text-decoration: none; 
-        }
         .pink-box {
             background-color: #F6247B;
             border-radius: 10px;
@@ -105,12 +93,6 @@
 </head>
 <body>
     <h2 style="text-align: center; color: white;">My Tournaments</h2>
-    <div class="header-row">
-        <form method="GET" action="/my_tournaments_organizer/">
-            <input type="text" name="q" placeholder="Search by tournament name">
-            <button type="submit">Search</button>
-        </form>
-    </div>
     <div class="tournament-list">
         {% for tournament in tournaments %}
         <div class="black-box">
@@ -128,13 +110,14 @@
                     <p>
                         <img src="https://i.gyazo.com/ba5724c3a958c2a45f3d9cb246331803.png?fbclid=IwAR3-g3tkzxlUn9NDJG_pDqUVKiXBXY_jhYW18h1Tg4BwgDLDQ32acWjzSI8" alt="Tier Icon" class="icon"> Tier: {{ tournament.get_tier_display }}
                     </p>
+                    <p>
+                        Status: {{ tournament.status }}
+                    </p>
                 </div>
-                <a href="{% url 'my_tournaments_organizer:edit_tournament' tournament.id %}" class="edit-button">Edit</a>
-                <a href="/tournament{{ tournament.id }}/player_applications_list/" class="pink-button">Player Applications</a>
             </div>
         </div>
         {% empty %}
-        <h3 style="text-align: center; color: red;">No Tournament Created</h3>
+        <h3 style="text-align: center; color: red;">No Tournaments Joined</h3>
         {% endfor %}
     </div>
 </body>

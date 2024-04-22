@@ -13,7 +13,6 @@ def notifications_page(request):
 
     if request.method == 'POST':
         notifications_page.notifications1 = request.POST.get('notifications1') == 'on'
-        notifications_page.notifications2 = request.POST.get('notifications2') == 'on'
         notifications_page.save()
     
     message = None
