@@ -27,9 +27,10 @@ urlpatterns = [
     path('', include("create_tournament.urls")),
     path('log_in/', include('log_in.urls', namespace="log_in")),
     path('register/', include('register.urls', namespace="register")),
-    path('tournament<int:id>/player_applications_list/', include('player_applications_list.urls', namespace="player_applications_list")),    
+    path('tournament<int:id>/player_applications_list/', include('player_applications_list.urls', namespace="player_applications_list")),
     path('my_tournaments_organizer/', include('my_tournaments_organizer.urls', namespace="my_tournaments_organizer")),
     path('', include('join_tournament.urls', namespace="join_tournament")),
+    path('profile/', include('player_profile.urls', namespace="player_profile")),
     path('tournament<int:id>/tournament_details/', include('tournament_details.urls', namespace="tournament_details")),
 ]
 
