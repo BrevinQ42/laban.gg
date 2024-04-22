@@ -24,8 +24,8 @@ def notifications_page(request):
         user_tournaments = TournamentPlayer.objects.filter(account=user)
         ongoing_tournaments = Tournament.objects.filter(status='Ongoing', id__in=user_tournaments.values_list('tournament_id', flat=True))
         for tournament in ongoing_tournaments:
-            message = f"The tournament '{tournament.name}' is now ongoing."
-            break  # Stop after finding the first ongoing tournament
+            message = f"The tournament you joined, '{tournament.name}' is now ongoing."
+            break  
 
     base_template = get_base_template(request)
 
