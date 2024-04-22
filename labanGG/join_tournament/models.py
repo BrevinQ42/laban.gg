@@ -15,3 +15,6 @@ class TournamentPlayer(models.Model):
 
     def get_absolute_url(self):
         return reverse('player_profile:player-detail', kwargs={'pk':self.pk})
+    
+    def status_is_accepted(self):
+        return self.application_status == "Accepted"
