@@ -14,6 +14,7 @@ def index(request, id):
 
 	keyword = ""
 	applicants = TournamentPlayer.objects.filter(tournament=tournament)
+	applicants = applicants.filter(application_status="Pending")
 
 	if request.method == 'POST':
 		if request.POST.get('searchPlayer'):
@@ -36,7 +37,14 @@ def index(request, id):
 					context['message'] = applicant.ign + "'s application was rejected."
 					break
 
-	applicants = applicants.filter(application_status="Pending")
+		applicants = applicants.filter(application_status="Pending")
+
+	officialPlayers = TournamentPlayer.objects.filter(tournament=tournament)
+	officialPlayers = officialPlayers.filter(application_status="Accepted")
+
+	if officialPlayers.count() == 8:
+		applicants = officialPlayers.filter(application_status="Pending") # to make applicants null
+		context['message'] = "There are already 8 players in the tournament"
 
 	context['applicants'] = applicants
 
