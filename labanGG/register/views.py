@@ -16,13 +16,13 @@ def register_view(request):
             form2 = OrganizerAccountForm()
             if form1.is_valid():
                 form1.save()
-                return redirect('games/')
+                return redirect('/log_in/')
         elif 'form2_submit' in request.POST:
             form2 = OrganizerAccountForm(request.POST)
             form1 = AccountForm()
             if form2.is_valid():
                 form2.save()
-                return redirect('games/')
+                return redirect('/log_in/')
     else:
         form1 = AccountForm()
         form2 = OrganizerAccountForm()

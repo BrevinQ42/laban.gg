@@ -28,3 +28,18 @@ class GamesSearchView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         return Game.objects.filter(title__icontains=query).order_by('title')
+    
+    def get_context_data(self, **kwargs): #Add this to determine which base_account.html to display
+        context = super().get_context_data(**kwargs)
+        context['base_template'] = 'base_organizer.html' if self.request.user.isOrganizer else 'base_attendee.html'
+        return context
+
+def TournamentsListView(request):
+    game = Game.objects.filter(title=self.kwargs['title'])
+    query = request.GET.get('q')
+    tournaments = Tournament.objects.filter(name=game)
+    if query:
+            tournaments = tournaments.filter(Q(name__icontains=query))  # Filter tournaments by name
+
+    return render(request, 'tournaments_per_game.html', {'tournaments': tournaments})
+
