@@ -93,6 +93,12 @@
 </head>
 <body>
     <h2 style="text-align: center; color: white;">My Tournaments</h2>
+    <div class="header-row">
+        <form method="GET" action="/my_tournaments_attendee/">
+            <input type="text" name="q" placeholder="Search by tournament name">
+            <button type="submit">Search</button>
+        </form>
+    </div>
     <div class="tournament-list">
         {% for tournament in tournaments %}
         <div class="black-box">
