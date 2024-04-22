@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import Notifications
+from create_tournament.models import Tournament
+from join_tournament.models import TournamentPlayer
 
 def get_base_template(request):
     base_template = 'base_organizer.html' if request.user.isOrganizer else 'base_attendee.html'
@@ -12,8 +14,16 @@ def notifications_page(request):
     if request.method == 'POST':
         notifications_page.notifications1 = request.POST.get('notifications1') == 'on'
         notifications_page.notifications2 = request.POST.get('notifications2') == 'on'
-        notifications_page.notifications3 = request.POST.get('notifications3') == 'on'
         notifications_page.save()
+
+    # Update message based on tournament status
+    if notifications_page.notifications1 == True:
+        user = request.user
+        user_tournaments = TournamentPlayer.objects.filter(account=user)
+        ongoing_tournaments = Tournament.objects.filter(status='Ongoing', id__in=user_tournaments.values_list('tournament_id', flat=True))
+        for tournament in ongoing_tournaments:
+            notifications_page.message = f"The tournament '{tournament.name}' is now ongoing."
+            notifications_page.save()
 
     base_template = get_base_template(request)
 

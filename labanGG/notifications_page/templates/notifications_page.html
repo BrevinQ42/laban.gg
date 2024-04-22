@@ -64,9 +64,6 @@
                 <label for="notifications2">Notification 2</label>
                 <input type="checkbox" id="notifications2" name="notifications2" {% if notifications_page.notifications2 %}checked{% endif %}><br>
         
-                <label for="notifications3">Notification 3</label>
-                <input type="checkbox" id="notifications3" name="notifications3" {% if notifications_page.notifications3 %}checked{% endif %}><br>
-        
                 <button type="submit" class="pink-button">Save</button>
                 {% if request.method == 'POST' %}
                     {% if notifications_page %}
@@ -74,6 +71,11 @@
                     {% endif %}
                 {% endif %}
             </form>
+        </div>
+
+        <div class="black-box">
+            <h2>Notifications</h2>
+            <p>{{ notifications_page.message }}</p>
         </div>
     </body>
 {% endblock %}
