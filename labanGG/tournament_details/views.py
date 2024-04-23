@@ -42,6 +42,10 @@ def updateBrackets(bracket, matchups, matchNumber, winner, loser, context):
             winner.save()
             loser.save()
 
+            tournament = bracket.tournament
+            tournament.status = "Ended"
+            tournament.save()
+
         else:
             if matchups.filter(matchNumber=5+(matchNumber-1)//2):
                 targetMatchup = matchups.get(matchNumber=5+(matchNumber-1)//2)
