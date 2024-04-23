@@ -1,0 +1,98 @@
+{% extends base_template %}
+{% load static %}
+
+{% block title %}Tournament Brackets{% endblock %}
+
+{% block content %}
+	<head>
+        <meta charset="UTF-8">
+        <title>Tournament Brackets</title>
+        <style>
+
+        </style>
+    </head>
+
+    <!-- PLEASE remove this style=... when you design the thing-->
+    <body style="margin-left: 125px;">
+    	<form method="POST">
+    		{% csrf_token %}
+
+    		<h3>{{ message }}</h3>
+
+	    	{% if winnersBracket %}
+		    	<h2>Winner's Bracket</h2>
+
+		    	{% if not winnersBracket.matchups.all %}
+		    		No Matches Yet
+		    	{% endif%}
+
+		    	{% for matchup in winnersBracket.matchups.all|dictsort:"matchNumber" %}
+		    		Match {{ matchup.matchNumber }}<br>
+
+		    		{% for tournamentPlayer in matchup.playerinmatchup_set.all|dictsort:"playerNumber" %}
+		    			{% if tournamentPlayer.isWinner %}
+		    				<b>
+		    			{% elif tournamentPlayer.isWinner == False %}
+		    				<em>
+		    			{% endif %}
+
+	    				- {{ tournamentPlayer.player.ign }}
+	    				</em>
+	    				</b>
+
+		    			<input style="width:14px; text-align: center" type="text" placeholder="{{ tournamentPlayer.score }}" name="Wm{{ matchup.matchNumber }}p{{ tournamentPlayer.playerNumber }}score">
+
+		    			<br>
+		    		{% endfor %}
+
+		    		{% if matchup.status == "Ongoing" %}
+		    			<button type="submit" name="reportWMatch{{ matchup.matchNumber }}Score" value="reportWMatch{{ matchup.matchNumber }}Score">
+		    				Report Score
+		    			</button>
+		    		{% endif %}
+		    		
+		    		<br><br>
+		    	{% endfor %}
+
+		    {% else %}
+		    	No Brackets Created Yet
+		    {% endif %}
+
+	    	{% if losersBracket %}
+		    	<h2>Loser's Bracket</h2>
+
+		    	{% if not losersBracket.matchups.all %}
+		    		No Matches Yet
+		    	{% endif%}
+
+		    	{% for matchup in losersBracket.matchups.all|dictsort:"matchNumber" %}
+		    		Match {{ matchup.matchNumber }}<br>
+
+		    		{% for tournamentPlayer in matchup.playerinmatchup_set.all|dictsort:"playerNumber" %}
+		    			{% if tournamentPlayer.isWinner %}
+		    				<b>
+		    			{% elif tournamentPlayer.isWinner == False %}
+		    				<em>
+		    			{% endif %}
+
+	    				- {{ tournamentPlayer.player.ign }}
+	    				</em>
+	    				</b>
+
+		    			<input style="width:14px; text-align: center" type="text" placeholder="{{ tournamentPlayer.score }}" name="Lm{{ matchup.matchNumber }}p{{ tournamentPlayer.playerNumber }}score">
+
+		    			<br>
+		    		{% endfor %}
+
+		    		{% if matchup.status == "Ongoing" %}
+		    			<button type="submit" name="reportLMatch{{ matchup.matchNumber }}Score" value="reportLMatch{{ matchup.matchNumber }}Score">
+		    				Report Score
+		    			</button>
+		    		{% endif %}
+		    		
+		    		<br><br>
+		    	{% endfor %}
+		    {% endif %}
+		</form>
+    </body>
+{% endblock%}

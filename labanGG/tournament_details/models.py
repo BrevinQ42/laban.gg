@@ -11,9 +11,13 @@ class Bracket(models.Model):
 class Matchup(models.Model):
 	bracket = models.ForeignKey(Bracket, on_delete=models.CASCADE, related_name='matchups')
 	matchNumber = models.IntegerField()
+	status = models.CharField(max_length=10, default="Upcoming")
+	resultConfirmed = models.BooleanField(default=False)
 
 
 class PlayerInMatchup(models.Model):
 	player = models.ForeignKey(TournamentPlayer, on_delete=models.CASCADE)
 	matchup = models.ForeignKey(Matchup, on_delete=models.CASCADE)
 	playerNumber = models.IntegerField()
+	isWinner = models.BooleanField(null=True)
+	score = models.IntegerField(default = -1)
