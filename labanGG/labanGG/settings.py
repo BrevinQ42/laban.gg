@@ -52,8 +52,10 @@ INSTALLED_APPS = [
     'player_applications_list',
     'my_tournaments_organizer',
     'join_tournament',
+    'notifications_page',
     'player_profile',
     'tournament_details',
+    'my_tournaments_attendee',
 ]
 
 MIDDLEWARE = [
