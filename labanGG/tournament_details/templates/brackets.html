@@ -8,12 +8,128 @@
         <meta charset="UTF-8">
         <title>Tournament Brackets</title>
         <style>
+		  body {
+            background-color: #4D24AC; 
+        }
+        .tournament-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        .tournament-box {
+            background-color: black;
+            border-radius: 30px;
+            padding: 20px;
+            color: white;
+            margin: 10px;
+            width: 120px;
+            text-align: center;
+        }
+        .match {
+            background-color: #9400D3; 
+            padding: 10px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .round {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .spacer {
+            background-color: #4D24AC; 
+            padding: 10px;
+            margin-bottom: 30px;
+            color: white;
+        }
 
         </style>
     </head>
 
     <!-- PLEASE remove this style=... when you design the thing-->
-    <body style="margin-left: 125px;">
+    <body>
+		<div class="tournament-container">
+			<div class="round">
+				<div class="tournament-box">
+					<div class="match">Player 1</div>
+				</div>
+				<div class="tournament-box">
+					<div class="match">Player 2</div>
+				</div>
+				<div class="tournament-box">
+					<div class="match">Player 3</div>
+				</div>
+				<div class="tournament-box">
+					<div class="match">Player 4</div>
+				</div>
+				<div class="tournament-box">
+					<div class="match">Player 5</div>
+				</div>
+				<div class="tournament-box">
+					<div class="match">Player 6</div>
+				</div>
+				<div class="tournament-box">
+					<div class="match">Player 7</div>
+				</div>
+				<div class="tournament-box">
+					<div class="match">Player 8</div>
+				</div>
+			</div>
+			<div class="round">
+				<div class="spacer"></div> 
+				<div class="tournament-box">
+					<div class="match">Winner of Match 1</div>
+				</div>
+				<div class="spacer"></div> 
+				<div class="spacer"></div> 
+				<div class="tournament-box">
+					<div class="match">Winner of Match 2</div>
+				</div>
+				<div class="spacer"></div> 
+				<div class="tournament-box">
+					<div class="match">Winner of Match 3</div>
+				</div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="tournament-box">
+					<div class="match">Winner of Match 4</div>
+				</div>
+				<div class="spacer"></div>
+			</div>
+			<div class="round">
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="tournament-box">
+					<div class="match">Winner of Match 5</div>
+				</div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="tournament-box">
+					<div class="match">Winner of Match 6</div>
+				</div>
+				<div class="spacer"></div>
+			</div>
+			<div class="round">
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="spacer"></div>
+				<div class="tournament-box">
+					<div class="match">Winner of Match 7</div>
+				</div>
+				<div class="spacer"></div>
+			</div>
+		</div>
     	<form method="POST">
     		{% csrf_token %}
 
