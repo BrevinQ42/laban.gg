@@ -146,7 +146,7 @@ def updateBrackets(bracket, matchups, matchNumber, winner, loser, context):
         elif matchNumber == 6:
             winnersMatchups = Matchup.objects.filter(bracket=context['winnersBracket'])
 
-            if matchups.filter(matchNumber=8):
+            if winnersMatchups.filter(matchNumber=8):
                 targetMatchup = winnersMatchups.get(matchNumber=8)
                 targetMatchup.status = "Ongoing"
             else:
