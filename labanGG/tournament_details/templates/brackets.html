@@ -13,6 +13,17 @@
                 color: white;
                 margin-left: 125px;
             }
+            .pink-button {
+                background-color: #F6247B;
+                color: white;
+                border: none;
+                padding: 10px 10px;
+                border-radius: 30px;
+                cursor: pointer;
+                margin-top: 20px;
+                width: 200px;
+                text-align: center;
+            }
             .bracket {
                 display: grid;
                 grid-template-columns: 250px 250px 250px 250px;
@@ -58,6 +69,7 @@
     </head>
 
     <body>
+    	<div class="pink-button"><a href="/tournament{{tournament.id}}/tournament_details/">Back to Tournament Details</a></div>
     	<form method="POST">
     		{% csrf_token %}
 

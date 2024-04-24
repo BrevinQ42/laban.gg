@@ -203,6 +203,7 @@ def brackets(request, id):
     tournament = Tournament.objects.get(id=id)
     user = request.user
 
+    context['tournament'] = tournament
     context['base_template'] = 'base_organizer.html' if user.isOrganizer else 'base_attendee.html'
 
     brackets = Bracket.objects.filter(tournament=tournament)
