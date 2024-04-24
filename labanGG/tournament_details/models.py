@@ -21,3 +21,6 @@ class PlayerInMatchup(models.Model):
 	playerNumber = models.IntegerField()
 	isWinner = models.BooleanField(null=True)
 	score = models.IntegerField(default = -1)
+
+	def __str__(self):
+		return f"{self.player.ign} in {self.matchup.matchNumber} of {self.matchup.bracket.classification} Bracket"

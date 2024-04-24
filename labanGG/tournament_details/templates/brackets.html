@@ -8,206 +8,162 @@
         <meta charset="UTF-8">
         <title>Tournament Brackets</title>
         <style>
-		  body {
-            background-color: #4D24AC; 
-        }
-        .tournament-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 50px;
-        }
-        .tournament-box {
-            background-color: black;
-            border-radius: 30px;
-            padding: 20px;
-            color: white;
-            margin: 10px;
-            width: 120px;
-            text-align: center;
-        }
-        .match {
-            background-color: #9400D3; 
-            padding: 10px;
-            margin-bottom: 10px;
-            color: white;
-        }
-        .round {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-right: 20px;
-        }
-
-        .spacer {
-            background-color: #4D24AC; 
-            padding: 10px;
-            margin-bottom: 30px;
-            color: white;
-        }
-
+        	body {
+                background-color: #4D24AC;
+                color: white;
+                margin-left: 125px;
+            }
+            .bracket {
+                display: grid;
+                grid-template-columns: 250px 250px 250px 250px;
+                justify-content: left;
+                align-items: left;
+            }
+            .round {
+            	width: 250px;
+            }
+            .player-box {
+            	background-color: black;
+            	width: 120px;
+                padding: 10px;
+                color: white;
+            }
+            .player {
+            	background-color: #9400D3;
+                width: 120px;
+                display: grid;
+                grid-template-columns: 95px 15px;
+                justify-content: center;
+                align-items: center;
+            }
+            .bracket input {
+                background-color: white;
+                border: none;
+                margin-bottom: 1px;
+            	width: 15px;
+            	color: black;
+            	text-align: center;
+            }
+            .bracket button {
+                background-color: #F6247B;
+                color: white;
+                border: none;
+                padding: 10px 10px;
+                border-radius: 50px;
+                cursor: pointer;
+                margin-top: 10px;
+                margin-bottom: 20px;
+            }
         </style>
     </head>
 
-    <!-- PLEASE remove this style=... when you design the thing-->
     <body>
-		<div class="tournament-container">
-			<div class="round">
-				<div class="tournament-box">
-					<div class="match">Player 1</div>
-				</div>
-				<div class="tournament-box">
-					<div class="match">Player 2</div>
-				</div>
-				<div class="tournament-box">
-					<div class="match">Player 3</div>
-				</div>
-				<div class="tournament-box">
-					<div class="match">Player 4</div>
-				</div>
-				<div class="tournament-box">
-					<div class="match">Player 5</div>
-				</div>
-				<div class="tournament-box">
-					<div class="match">Player 6</div>
-				</div>
-				<div class="tournament-box">
-					<div class="match">Player 7</div>
-				</div>
-				<div class="tournament-box">
-					<div class="match">Player 8</div>
-				</div>
-			</div>
-			<div class="round">
-				<div class="spacer"></div> 
-				<div class="tournament-box">
-					<div class="match">Winner of Match 1</div>
-				</div>
-				<div class="spacer"></div> 
-				<div class="spacer"></div> 
-				<div class="tournament-box">
-					<div class="match">Winner of Match 2</div>
-				</div>
-				<div class="spacer"></div> 
-				<div class="tournament-box">
-					<div class="match">Winner of Match 3</div>
-				</div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="tournament-box">
-					<div class="match">Winner of Match 4</div>
-				</div>
-				<div class="spacer"></div>
-			</div>
-			<div class="round">
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="tournament-box">
-					<div class="match">Winner of Match 5</div>
-				</div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="tournament-box">
-					<div class="match">Winner of Match 6</div>
-				</div>
-				<div class="spacer"></div>
-			</div>
-			<div class="round">
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="spacer"></div>
-				<div class="tournament-box">
-					<div class="match">Winner of Match 7</div>
-				</div>
-				<div class="spacer"></div>
-			</div>
-		</div>
     	<form method="POST">
     		{% csrf_token %}
 
     		<h3>{{ message }}</h3>
 
 	    	{% if winnersBracket %}
-		    	<h2>Winner's Bracket</h2>
+			    <h2>Winner's Bracket</h2>
+	    		<div class="bracket">
+			    	{% for matchup in winnersBracket.matchups.all|dictsort:"matchNumber" %}
+			    		{% if matchup.matchNumber == 1 or matchup.matchNumber == 5 or matchup.matchNumber >= 7 %}
+			    			<div class="round">
+			    		{% endif %}
 
-		    	{% if not winnersBracket.matchups.all %}
-		    		No Matches Yet
-		    	{% endif%}
-
-		    	{% for matchup in winnersBracket.matchups.all|dictsort:"matchNumber" %}
-		    		Match {{ matchup.matchNumber }}<br>
-
-		    		{% for tournamentPlayer in matchup.playerinmatchup_set.all|dictsort:"playerNumber" %}
-		    			{% if tournamentPlayer.isWinner %}
-		    				<b>
-		    			{% elif tournamentPlayer.isWinner == False %}
-		    				<em>
+		    			{% if matchup.matchNumber >= 5 %}
+		    				<br><br><br><br>
 		    			{% endif %}
 
-	    				- {{ tournamentPlayer.player.ign }}
-	    				</em>
-	    				</b>
+		    			{% if matchup.matchNumber >= 6 %}
+		    				<br><br><br><br><br>
+		    			{% endif %}
 
-		    			<input style="width:14px; text-align: center" type="text" placeholder="{{ tournamentPlayer.score }}" name="Wm{{ matchup.matchNumber }}p{{ tournamentPlayer.playerNumber }}score">
+		    			{% if matchup.matchNumber >= 7 %}
+		    				<br><br><br>
+		    			{% endif %}
 
-		    			<br>
-		    		{% endfor %}
+			    		{% for tournamentPlayer in matchup.playerinmatchup_set.all|dictsort:"playerNumber" %}
+				    		<div class="player-box">
+				    			<div class="player">
+					    			{% if tournamentPlayer.isWinner %}
+					    				<b>
+					    			{% elif tournamentPlayer.isWinner == False %}
+					    				<em>
+					    			{% endif %}
 
-		    		{% if matchup.status == "Ongoing" %}
-		    			<button type="submit" name="reportWMatch{{ matchup.matchNumber }}Score" value="reportWMatch{{ matchup.matchNumber }}Score">
-		    				Report Score
-		    			</button>
-		    		{% endif %}
-		    		
-		    		<br><br>
-		    	{% endfor %}
+				    				{{ tournamentPlayer.player.ign }}
+				    				</em>
+				    				</b>
+
+					    			<input type="text" placeholder="{{ tournamentPlayer.score }}" name="Wm{{ matchup.matchNumber }}p{{ tournamentPlayer.playerNumber }}score">
+				    			</div>
+				    		</div>
+			    		{% endfor %}
+
+			    		{% if matchup.status == "Ongoing" %}
+			    			<button type="submit" name="reportWMatch{{ matchup.matchNumber }}Score" value="reportWMatch{{ matchup.matchNumber }}Score">
+			    				Report Score
+			    			</button>
+			    		{% else %}
+			    			<br><br><br><br>
+			    		{% endif %}
+
+			    		{% if matchup.matchNumber == 4 or matchup.matchNumber >= 6 %}
+			    			</div>
+			    		{% endif %}
+			    	{% endfor %}
+			    </div>
 
 		    {% else %}
 		    	No Brackets Created Yet
 		    {% endif %}
 
 	    	{% if losersBracket %}
-		    	<h2>Loser's Bracket</h2>
+			    <h2>Loser's Bracket</h2>
+		    	<div class="bracket">
+			    	{% for matchup in losersBracket.matchups.all|dictsort:"matchNumber" %}
+			    		{% if matchup.matchNumber == 1 or matchup.matchNumber == 3 or matchup.matchNumber >= 5 %}
+			    			<div class="round">
+			    		{% endif %}
 
-		    	{% if not losersBracket.matchups.all %}
-		    		No Matches Yet
-		    	{% endif%}
+			    		{% if matchup.matchNumber >= 5 %}
+			    			<br><br><br><br>
+			    		{% endif %}
 
-		    	{% for matchup in losersBracket.matchups.all|dictsort:"matchNumber" %}
-		    		Match {{ matchup.matchNumber }}<br>
+			    		{% for tournamentPlayer in matchup.playerinmatchup_set.all|dictsort:"playerNumber" %}
+				    		<div class="player-box">
+				    			<div class="player">
+					    			{% if tournamentPlayer.isWinner %}
+					    				<b>
+					    			{% elif tournamentPlayer.isWinner == False %}
+					    				<em>
+					    			{% endif %}
 
-		    		{% for tournamentPlayer in matchup.playerinmatchup_set.all|dictsort:"playerNumber" %}
-		    			{% if tournamentPlayer.isWinner %}
-		    				<b>
-		    			{% elif tournamentPlayer.isWinner == False %}
-		    				<em>
-		    			{% endif %}
+				    				{{ tournamentPlayer.player.ign }}
+				    				</em>
+				    				</b>
 
-	    				- {{ tournamentPlayer.player.ign }}
-	    				</em>
-	    				</b>
+					    			<input type="text" placeholder="{{ tournamentPlayer.score }}" name="Lm{{ matchup.matchNumber }}p{{ tournamentPlayer.playerNumber }}score">
+				    			</div>
+				    		</div>
+			    		{% endfor %}
 
-		    			<input style="width:14px; text-align: center" type="text" placeholder="{{ tournamentPlayer.score }}" name="Lm{{ matchup.matchNumber }}p{{ tournamentPlayer.playerNumber }}score">
+			    		{% if matchup.status == "Ongoing" %}
+			    			<button type="submit" name="reportLMatch{{ matchup.matchNumber }}Score" value="reportLMatch{{ matchup.matchNumber }}Score">
+			    				Report Score
+			    			</button>
+			    		{% else %}
+			    			<br><br><br><br>
+			    		{% endif %}
 
-		    			<br>
-		    		{% endfor %}
 
-		    		{% if matchup.status == "Ongoing" %}
-		    			<button type="submit" name="reportLMatch{{ matchup.matchNumber }}Score" value="reportLMatch{{ matchup.matchNumber }}Score">
-		    				Report Score
-		    			</button>
-		    		{% endif %}
-		    		
-		    		<br><br>
-		    	{% endfor %}
+			    		{% if matchup.matchNumber == 2 or matchup.matchNumber >= 4 %}
+			    			</div>
+			    		{% endif %}
+			    	{% endfor %}
+			    </div>
+
 		    {% endif %}
 		</form>
     </body>
