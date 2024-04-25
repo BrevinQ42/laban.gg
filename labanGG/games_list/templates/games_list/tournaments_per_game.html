@@ -117,12 +117,8 @@
                     Schedule: {{ entry.schedule }} <br>
                     Status: {{ entry.status }} <br>
 
-                    {% if request.user.isOrganizer %}
-                    {% else %}
-                    <button> Follow </button>
-                    {% endif %}
+                    <button class="pink-button"><a href="/tournament{{ entry.id }}/tournament_details/">View Tournament Details</a></button>
             </div>
-            <a href="/tournament{{ entry.id }}/tournament_details/" class="pink-button">View Tournament Details</a>
             <br>
         {% empty %}
             There are no tournaments scheduled involving {{ object.title }}
