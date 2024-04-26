@@ -35,7 +35,7 @@ def updateBrackets(bracket, matchups, matchNumber, winner, loser, context):
     targetMatchup = ""
 
     if bracket.classification == "Winners":
-        if matchNumber == 8 or (matchNumber == 7 and not context['losersBracket']):
+        if matchNumber == 8 or (matchNumber == 7 and 'losersBracket' not in context):
             winner.ranking = 1
             loser.ranking = 2
 
@@ -58,7 +58,7 @@ def updateBrackets(bracket, matchups, matchNumber, winner, loser, context):
             advancingPlayer = PlayerInMatchup(player=winner, matchup=targetMatchup, playerNumber=(matchNumber-1)%2+1)
             advancingPlayer.save()
 
-            if not context['losersBracket']:
+            if 'losersBracket' not in context:
                 if matchNumber < 5:
                     loser.ranking = 5
                 elif matchNumber < 7:
